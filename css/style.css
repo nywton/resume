@@ -1,0 +1,108 @@
+/* Custom Stylesheet */
+/**
+ * Created By Nywton Barros
+ */
+
+
+/*********************
+  Media Query Classes
+**********************/
+@media only screen and (max-width: 600px) {
+
+
+}
+
+@media only screen and (max-width: 992px) {
+
+}
+
+
+
+@media only screen and (min-width: 993px) {
+
+}
+
+/*
+    DEFAULTS
+*/
+
+#index-card .card-content {
+    text-align: center;
+}
+
+.profile-img {
+    margin-top: -70px;
+    display: inline-block;
+    text-align: center;
+}
+
+.profile-img img {
+    vertical-align: middle;
+    width: 150px;
+    height: 150px;
+}
+
+body {
+    background: #e3e3e3;
+}
+
+.section title h1, h2, h3, h4, h5, h6 {
+    color: #5a5a5a;
+}
+/*
+    FONTS
+*/
+#index-card .card-content h2 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 35px;
+    line-height: 52px;
+    opacity: 0.7;
+}
+#index-card .card-content span {
+    font-size: 18px;
+    line-height: 34px;
+    color: #8a8a8b;
+    margin-bottom: 25px;
+    vertical-align: middle;
+}#index-card .card-content i {
+    color: #8a8a8b;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.section-title h4 i {
+    font-size: 3rem;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+#index-card .card-content p {
+    padding: 0;
+    font-size: 15px;
+    line-height: 27px;
+    opacity: 0.7;
+    margin-bottom: 40px;
+}
+
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+/*
+    PROGRESSS
+*/
+
+.progress {
+    background-color: #ff5252;
+}
+
+.progress .determinate {
+    background-color: white;
+}
+
+
+
