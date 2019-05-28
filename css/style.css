@@ -38,6 +38,14 @@
 .blue-theme {
     background: #4fc3f7 !important;
 }
+.blue-theme-light {
+    background: #8bf5ff !important;
+
+}
+.blue-theme-dark {
+    background: #0092c4 !important;
+
+}
 
 .profile-img {
     margin-top: -70px;

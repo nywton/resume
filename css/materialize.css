@@ -2867,7 +2867,7 @@ ul.staggered-list li {
 
 footer.page-footer {
   padding-top: 20px;
-  background-color: #ee6e73;
+  color: #333 important;
 }
 
 footer.page-footer .footer-copyright {
