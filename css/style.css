@@ -26,6 +26,12 @@
     DEFAULTS
 */
 
+.nyw-logo {
+    vertical-align: center;
+    width: 60px;
+    color: #fff;
+}
+
 #index-card .card-content {
     text-align: center;
 }
