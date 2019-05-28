@@ -29,6 +29,9 @@
 #index-card .card-content {
     text-align: center;
 }
+.blue-theme {
+    background: #4fc3f7 !important;
+}
 
 .profile-img {
     margin-top: -70px;
