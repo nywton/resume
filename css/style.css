@@ -4,6 +4,10 @@
  */
 
 
+nav .brand-logo {
+  font-family: 'Source Code Pro', monospace;
+}
+
 /*********************
   Media Query Classes
 **********************/
