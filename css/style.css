@@ -5,7 +5,10 @@
 
 
 nav .brand-logo {
-  font-family: 'Source Code Pro', monospace;
+  font-family: "Lilita One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #1e1e1e !important;
 }
 
 /*********************
@@ -31,9 +34,8 @@ nav .brand-logo {
 */
 
 .nyw-logo {
-    padding-top: 5px;
-    width: 50px;
-    color: #fff;
+    padding-top: 15px;
+    width: 38px;
 }
 
 #index-card .card-content {
