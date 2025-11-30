@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nywton Barros | Senior Software Engineer</title>
+    
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Load Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Nywton Barros - Senior Software Engineer">
+    <meta name="description" content="Senior Software Engineer specializing in High-Impact Development, Full Stack, and Cloud Architecture.">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nu-purple': {
+                            'DEFAULT': '#820ad1', 
+                            '50': '#f9f6fd',
+                            '100': '#f0e9fa',
+                            '200': '#e3d6f5',
+                            '300': '#d3bdef',
+                            '400': '#c09eed',
+                            '500': '#ae7dee',
+                            '600': '#820ad1',
+                            '700': '#6b00b8',
+                            '800': '#54008a',
+                            '900': '#410069',
+                            '950': '#2c0044',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                },
+            },
+        };
+    </script>
+
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            color: #f3f4f6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background-color: rgba(31, 41, 55, 0.4); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(75, 85, 99, 0.3); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+            border-radius: 0.75rem; 
+        }
+
+        /* --- ANIMATIONS --- */
+
+        /* 1. Keyframes for Hero Section (On Load) */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Utility classes for initial Hero load */
+        .hero-animate {
+            opacity: 0; /* Hidden by default */
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        /* Stagger delays for Hero */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-700 { animation-delay: 0.7s; }
+
+        /* 2. Scroll Triggered Classes */
+        /* Elements start hidden and slightly lower */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* When the 'visible' class is added via JS, they appear */
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggering children in grids (Competencies, Testimonials) */
+        .reveal-group .reveal-child {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Loop to create stagger delays for up to 4 items */
+        .reveal-group.visible .reveal-child:nth-child(1) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+        .reveal-group.visible .reveal-child:nth-child(2) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+        .reveal-group.visible .reveal-child:nth-child(3) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+        .reveal-group.visible .reveal-child:nth-child(4) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #820ad1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b00b8; 
+        }
+
+        /* Modal Styles */
+        #project-modal {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        #project-modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #project-modal:not(.hidden) {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-nu-purple-500 selection:text-white">
+
+    <!-- Sticky Header/Navigation -->
+    <header class="sticky top-0 z-50 glass-card border-t-0 border-x-0 rounded-t-none shadow-xl shadow-black/30 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#hero" class="text-2xl font-extrabold text-nu-purple-400 hover:text-nu-purple-300 transition duration-300 flex items-center group">
+                <i class="fa-solid fa-cube text-3xl mr-3 transform group-hover:rotate-12 transition-transform duration-300"></i>
+                <span class="text-md md:text-2xl tracking-tight">Software Designer</span>
+            </a>
+            
+            <!-- Nav Links -->
+            <nav class="flex space-x-6 text-sm md:text-base font-medium items-center">
+                <a href="#projects" class="hover:text-nu-purple-400 transition duration-200">Projects</a>
+                <a href="#contact" class="px-5 py-2 border border-nu-purple-500 rounded-lg hover:bg-nu-purple-500 hover:text-white transition duration-200">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="relative overflow-hidden pt-10 pb-32 px-4 md:px-8 flex items-center justify-center min-h-[85vh]">    
+        
+        <!-- Background Decor (Glow) -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-nu-purple-900/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <!-- 10+ Years Tag -->
+            <div class="hero-animate delay-100 mb-4 flex justify-center">
+                <span class="px-4 py-1 rounded-full bg-gray-800/80 border border-gray-700 text-xs md:text-sm font-semibold text-gray-300 uppercase tracking-widest shadow-lg">
+                    10+ Years Experience
+                </span>
+            </div>
+
+            <!-- Subtitle -->
+            <p class="hero-animate delay-200 text-xl md:text-2xl font-bold text-nu-purple-400 mb-4 tracking-widest uppercase opacity-90">
+                Full Stack & Cloud Engineering
+            </p>
+            
+            <!-- Main Title -->
+            <h1 class="hero-animate delay-300 text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-tight">
+                Nywton Barros
+            </h1>
+            
+            <!-- The Impact Sentence -->
+            <h2 class="hero-animate delay-500 text-2xl md:text-4xl font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                "Crafting elegant software experiences that <span class="font-semibold text-nu-purple-300 border-b-2 border-nu-purple-500/50 pb-1">make life easier.</span>"
+            </h2>
+
+            <!-- CTA Button -->
+            <div class="hero-animate delay-700 mt-12">
+                <a href="#contact" class="group inline-flex items-center px-10 py-4 text-lg font-bold bg-nu-purple-600 text-white rounded-xl shadow-lg shadow-nu-purple-600/30 hover:bg-nu-purple-500 transition-all duration-300 transform hover:-translate-y-1">
+                    Start a Conversation 
+                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. CORE COMPETENCIES SECTION (Staggered Grid) -->
+    <section id="competencies" class="py-20 md:py-28 px-4 md:px-8 bg-gray-900/20 border-y border-gray-800/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal-on-scroll text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Core <span class="text-nu-purple-400">Competencies</span></h2>
+                <div class="w-24 h-1 bg-nu-purple-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+            
+            <div class="reveal-group grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Tile 1 -->
+                <div class="reveal-child tile glass-card p-8 text-center transition duration-300 hover:bg-gray-800/60 hover:shadow-nu-purple-500/20 hover:-translate-y-2 group">
+                    <div class="icon text-nu-purple-400 text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300"><i class="fa-solid fa-code"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Full Stack Mastery</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Expertise in Angular, React, Vue.js, Node.js, and Ruby on Rails. Delivering resilient, end-to-end solutions.</p>
+                </div>
+                
+                <!-- Tile 2 -->
+                <div class="reveal-child tile glass-card p-8 text-center transition duration-300 hover:bg-gray-800/60 hover:shadow-nu-purple-500/20 hover:-translate-y-2 group">
+                    <div class="icon text-nu-purple-400 text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300"><i class="fa-solid fa-server"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Cloud Architecture</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Building scalable APIs and robust backend systems using PostgreSQL, MongoDB, and secured AWS infrastructure.</p>
+                </div>
+
+                <!-- Tile 3 -->
+                <div class="reveal-child tile glass-card p-8 text-center transition duration-300 hover:bg-gray-800/60 hover:shadow-nu-purple-500/20 hover:-translate-y-2 group">
+                    <div class="icon text-nu-purple-400 text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">Mobile & R&D</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Developing cross-platform mobile apps (React Native) and driving innovation through scientific research.</p>
+                </div>
+
+                <!-- Tile 4 -->
+                <div class="reveal-child tile glass-card p-8 text-center transition duration-300 hover:bg-gray-800/60 hover:shadow-nu-purple-500/20 hover:-translate-y-2 group">
+                    <div class="icon text-nu-purple-400 text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-3">AI & LLM Integration</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed">Designing custom LLM solutions and RAG architectures to leverage proprietary company data effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PROJECTS SECTION (Slide In) -->
+    <section id="projects" class="py-20 md:py-28 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal-on-scroll text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Selected <span class="text-nu-purple-400">Projects</span></h2>
+            </div>
+
+            <!-- Project Card 1: Vetias -->
+            <div class="reveal-on-scroll glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 mb-16 items-center transition duration-500 hover:border-nu-purple-500/30">
+                <!-- Content -->
+                <div class="order-2 lg:order-1">
+                    <span class="inline-block py-1 px-3 rounded-full bg-nu-purple-900/30 border border-nu-purple-700/50 text-xs font-semibold text-nu-purple-300 uppercase tracking-widest mb-4">HealthTech & Telemedicine</span>
+                    <h3 class="text-3xl font-bold text-white mb-4">Project Vetias</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Developed Vetias, a specialized telemedicine platform for veterinarians. This SaaS tool enables remote case consultations, significantly improving clinical efficiency and successfully managing over 11,000 veterinary support tickets.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">Vue.js</span>
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">Node.js</span>
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">PostgreSQL</span>
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">Socket.io</span>
+                    </div>
+                    <!-- Added data-project and class for JS hook -->
+                    <button data-project="vetias" class="project-trigger inline-flex items-center text-nu-purple-400 hover:text-nu-purple-300 font-bold transition duration-200 group focus:outline-none">
+                        View Telemedicine Impact <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+                <!-- Image -->
+                <div class="order-1 lg:order-2 rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 shadow-2xl relative group cursor-pointer project-trigger" data-project="vetias">
+                    <div class="absolute inset-0 bg-nu-purple-900/10 group-hover:bg-transparent transition duration-300 z-10"></div>
+                    <img src="https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true" alt="Vetias Dashboard" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                </div>
+            </div>
+
+            <!-- Project Card 2: Doe+ -->
+            <div class="reveal-on-scroll glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center transition duration-500 hover:border-nu-purple-500/30">
+                <!-- Image -->
+                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 shadow-2xl relative group cursor-pointer project-trigger" data-project="doeplus">
+                    <div class="absolute inset-0 bg-nu-purple-900/10 group-hover:bg-transparent transition duration-300 z-10"></div>
+                    <img src="https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true" alt="Doe+ App" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                </div>
+                <!-- Content -->
+                <div>
+                    <span class="inline-block py-1 px-3 rounded-full bg-nu-purple-900/30 border border-nu-purple-700/50 text-xs font-semibold text-nu-purple-300 uppercase tracking-widest mb-4">Social Impact</span>
+                    <h3 class="text-3xl font-bold text-white mb-4">Doe+ Mobile Platform</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Architected and developed a mobile platform for blood donation scheduling. This initiative significantly increased local blood bank capacity, making a direct positive social impact by streamlining the donor process.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">Java (Android)</span>
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">PHP</span>
+                        <span class="text-xs font-mono text-sky-300 bg-sky-900/20 px-2 py-1 rounded">MySQL</span>
+                    </div>
+                    <!-- Added data-project and class for JS hook -->
+                    <button data-project="doeplus" class="project-trigger inline-flex items-center text-nu-purple-400 hover:text-nu-purple-300 font-bold transition duration-200 group focus:outline-none">
+                        Read About the Impact <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. EXPERIENCE JOURNEY -->
+    <section id="experience" class="py-20 md:py-28 px-4 md:px-8 bg-gray-900/20 border-y border-gray-800/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="reveal-on-scroll text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Professional <span class="text-nu-purple-400">Journey</span></h2>
+            </div>
+
+            <div class="relative sm:pl-0">
+                <!-- Vertical Line -->
+                <div class="absolute left-2 sm:left-1/2 w-0.5 bg-gradient-to-b from-nu-purple-600 via-nu-purple-900 to-transparent h-full transform sm:-translate-x-1/2"></div>
+                
+                <!-- 1. Banco do Brasil -->
+                <div class="reveal-on-scroll mb-12 flex items-center w-full sm:justify-end group">
+                    <div class="sm:w-1/2 sm:pl-8 pl-10">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/20 hover:border-nu-purple-500/50 relative">
+                            <!-- Arrow pointer -->
+                            <div class="hidden sm:block absolute top-1/2 -left-3 w-3 h-3 bg-gray-800 border-l border-b border-gray-600 transform rotate-45 -translate-y-1/2"></div>
+                            
+                            <span class="text-xs font-bold text-nu-purple-400 uppercase tracking-wide">2024 - Current</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Back-End Engineer</h3>
+                            <h4 class="text-md text-gray-400 mb-2">@ Banco do Brasil</h4>
+                            <p class="text-gray-300 text-sm">Modernizing core banking systems, ensuring high security and transaction processing efficiency.</p>
+                            <p class="mt-3 text-xs font-mono text-sky-400">Java • Spring Boot • Oracle DB • K8s</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-900 rounded-full border-2 border-nu-purple-400 shadow-[0_0_10px_rgba(130,10,209,0.5)] group-hover:scale-125 transition-transform duration-300"></div>
+                </div>
+                
+                <!-- 2. Vagas.com -->
+                <div class="reveal-on-scroll mb-12 flex items-center w-full sm:justify-start group">
+                    <div class="sm:w-1/2 sm:pr-8 sm:order-last pl-10 sm:pl-0 sm:text-right">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/20 hover:border-nu-purple-500/50 relative">
+                             <!-- Arrow pointer -->
+                             <div class="hidden sm:block absolute top-1/2 -right-3 w-3 h-3 bg-gray-800 border-r border-t border-gray-600 transform rotate-45 -translate-y-1/2"></div>
+
+                            <span class="text-xs font-bold text-nu-purple-400 uppercase tracking-wide">2023 - 2024</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Software Developer</h3>
+                            <h4 class="text-md text-gray-400 mb-2">@ Vagas.com</h4>
+                            <p class="text-gray-300 text-sm">Engineered and maintained core job platform features, ensuring stability for high-traffic operations.</p>
+                            <p class="mt-3 text-xs font-mono text-sky-400">Rails • Elixir • React • SQLServer</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-900 rounded-full border-2 border-nu-purple-400 shadow-[0_0_10px_rgba(130,10,209,0.5)] group-hover:scale-125 transition-transform duration-300 sm:order-first"></div>
+                </div>
+
+                <!-- 3. Jaya Tech -->
+                <div class="reveal-on-scroll mb-12 flex items-center w-full sm:justify-end group">
+                    <div class="sm:w-1/2 sm:pl-8 pl-10">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/20 hover:border-nu-purple-500/50 relative">
+                             <div class="hidden sm:block absolute top-1/2 -left-3 w-3 h-3 bg-gray-800 border-l border-b border-gray-600 transform rotate-45 -translate-y-1/2"></div>
+
+                            <span class="text-xs font-bold text-nu-purple-400 uppercase tracking-wide">2020 - Current</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Software Engineer</h3>
+                            <h4 class="text-md text-gray-400 mb-2">@ Jaya Tech (Remote US)</h4>
+                            <p class="text-gray-300 text-sm">Developed scalable health-tech solutions emphasizing secure cloud architecture and international collaboration.</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-900 rounded-full border-2 border-nu-purple-400 shadow-[0_0_10px_rgba(130,10,209,0.5)] group-hover:scale-125 transition-transform duration-300"></div>
+                </div>
+
+                <!-- 4. Clip -->
+                <div class="reveal-on-scroll mb-12 flex items-center w-full sm:justify-start group">
+                    <div class="sm:w-1/2 sm:pr-8 sm:order-last pl-10 sm:pl-0 sm:text-right">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/20 hover:border-nu-purple-500/50 relative">
+                             <div class="hidden sm:block absolute top-1/2 -right-3 w-3 h-3 bg-gray-800 border-r border-t border-gray-600 transform rotate-45 -translate-y-1/2"></div>
+                             
+                            <span class="text-xs font-bold text-nu-purple-400 uppercase tracking-wide">2018 - Current</span>
+                            <h3 class="text-xl font-bold text-white mt-1">Frontend Engineer</h3>
+                            <h4 class="text-md text-gray-400 mb-2">@ Clip</h4>
+                            <p class="text-gray-300 text-sm">Spearheaded Front-End engineering for large-scale web projects, strictly applying Domain-Driven Design (DDD).</p>
+                        </div>
+                    </div>
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-900 rounded-full border-2 border-nu-purple-400 shadow-[0_0_10px_rgba(130,10,209,0.5)] group-hover:scale-125 transition-transform duration-300 sm:order-first"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. IMPACT / NUMBERS SECTION -->
+    <section id="impact" class="py-20 md:py-28 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal-on-scroll text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Measurable <span class="text-nu-purple-400">Impact</span></h2>
+            </div>
+            
+            <div class="reveal-on-scroll glass-card grid grid-cols-1 sm:grid-cols-3 gap-8 p-10 md:p-16 text-center">
+                <!-- Item 1 -->
+                <div class="border-b sm:border-b-0 sm:border-r border-nu-purple-700/30 pb-8 sm:pb-0 sm:pr-8">
+                    <p class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 mb-2">
+                        <span id="stat-years" class="counter-number" data-target="10">0</span><span class="text-nu-purple-400">+</span>
+                    </p>
+                    <p class="text-sm md:text-lg font-semibold text-nu-purple-300 uppercase tracking-wider">Years Experience</p>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="border-b sm:border-b-0 sm:border-r border-nu-purple-700/30 pb-8 sm:pb-0 sm:pr-8">
+                    <p class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 mb-2">
+                        <span id="stat-patent" class="counter-number" data-target="1">0</span>
+                    </p>
+                    <p class="text-sm md:text-lg font-semibold text-nu-purple-300 uppercase tracking-wider">Software Patent</p>
+                </div>
+                
+                <!-- Item 3 -->
+                <div>
+                    <p class="text-6xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-gray-500 mb-2">
+                        <span id="stat-focus" class="counter-number" data-target="100">0</span><span class="text-nu-purple-400">%</span>
+                    </p>
+                    <p class="text-sm md:text-lg font-semibold text-nu-purple-300 uppercase tracking-wider">Solution Focus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SOCIAL RESPONSIBILITY SECTION -->
+    <section id="social-impact" class="py-20 md:py-28 px-4 md:px-8 bg-gray-900/40 border-y border-gray-800/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal-on-scroll text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">Social <span class="text-nu-purple-400">Responsibility</span></h2>
+            </div>
+
+            <div class="reveal-on-scroll glass-card p-10 md:p-16 grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
+                <div class="text-center lg:text-left">
+                    <div class="inline-block p-6 rounded-full bg-nu-purple-900/30 mb-6">
+                        <i class="fas fa-hand-holding-heart text-5xl text-nu-purple-400"></i>
+                    </div>
+                    <h3 class="text-3xl font-extrabold text-white">Tech for Good</h3>
+                    <p class="text-nu-purple-300 mt-2 font-medium">Commitment</p>
+                </div>
+                
+                <div class="lg:col-span-2">
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                        I believe software engineering carries a responsibility beyond the bottom line. My passion is leveraging full-stack and cloud skills to tackle public health and social issues, creating platforms that are accessible, reliable, and directly improve lives.
+                    </p>
+                    <h4 class="text-lg font-semibold text-white mb-2">Highlight: Doe+ Mobile Platform</h4>
+                    <p class="text-gray-400 mb-6 text-sm">
+                        This project successfully facilitated blood donations, demonstrating how thoughtful technology architecture can yield immediate, measurable humanitarian results.
+                    </p>
+                    <a href="#projects" class="inline-flex items-center px-6 py-3 text-sm font-bold bg-gray-800 text-white rounded-lg hover:bg-gray-700 hover:text-nu-purple-300 transition duration-300 border border-gray-600">
+                        Explore Doe+ <i class="fas fa-syringe ml-3"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. PEOPLE WHO TRUST IN ME SECTION -->
+    <section id="testimonials" class="py-20 md:py-28 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="reveal-on-scroll text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-white">People Who <span class="text-nu-purple-400">Trust In Me</span></h2>
+            </div>
+
+            <!-- Testimonials Grid with Stagger -->
+            <div class="reveal-group grid gap-8 lg:grid-cols-3">
+
+                <!-- Card 1 -->
+                <div class="reveal-child glass-card p-8 rounded-xl flex flex-col justify-between transition duration-300 hover:border-nu-purple-500/50 hover:shadow-xl hover:-translate-y-1">
+                    <div>
+                        <i class="fas fa-quote-left text-3xl mb-6 text-nu-purple-600 opacity-50"></i>
+                        <blockquote class="text-md text-gray-300 italic leading-relaxed">
+                            "The attention to detail and proactive communication was outstanding. Nywton not only met the brief but elevated the entire project with innovative solutions."
+                        </blockquote>
+                    </div>
+                    <div class="mt-8 flex items-center border-t border-gray-700 pt-4">
+                        <img class="w-12 h-12 rounded-full object-cover ring-2 ring-nu-purple-500/50" src="https://media.licdn.com/dms/image/v2/C4D03AQFXBZjLeiWhGQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1657660338760?e=1766016000&v=beta&t=WjIp_CAy3AgmmC4H9aGmp4Nwzgrj4SSfQ8vp4Own-CI" alt="Fábio">
+                        <div class="ml-4">
+                            <p class="text-sm font-bold text-white">Fábio Depiné</p>
+                            <p class="text-xs text-nu-purple-300">IT Manager, Banco do Brasil</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="reveal-child glass-card p-8 rounded-xl flex flex-col justify-between transition duration-300 hover:border-nu-purple-500/50 hover:shadow-xl hover:-translate-y-1">
+                    <div>
+                        <i class="fas fa-quote-left text-3xl mb-6 text-nu-purple-600 opacity-50"></i>
+                        <blockquote class="text-md text-gray-300 italic leading-relaxed">
+                            “Professional, highly responsive, and technically proficient. He streamlined a complex challenge and delivered a seamless experience.”
+                        </blockquote>
+                    </div>
+                    <div class="mt-8 flex items-center border-t border-gray-700 pt-4">
+                        <img class="w-12 h-12 rounded-full object-cover ring-2 ring-nu-purple-500/50" src="https://media.licdn.com/dms/image/v2/C4E03AQH0E-wv0QqIqQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1640460270976?e=1766016000&v=beta&t=UXEMnLnRkVo3vQmWTI0JH2YNMssH2BFiuRa56uKV-lY" onerror="this.onerror=null; this.src='https://placehold.co/100x100/820ad1/1f2937?text=RR';" alt="Rodrigo">
+                        <div class="ml-4">
+                            <p class="text-sm font-bold text-white">Rodrigo Rabelo</p>
+                            <p class="text-xs text-nu-purple-300">Director, Intensivet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="reveal-child glass-card p-8 rounded-xl flex flex-col justify-between transition duration-300 hover:border-nu-purple-500/50 hover:shadow-xl hover:-translate-y-1">
+                    <div>
+                        <i class="fas fa-quote-left text-3xl mb-6 text-nu-purple-600 opacity-50"></i>
+                        <blockquote class="text-md text-gray-300 italic leading-relaxed">
+                            "A game-changer for our workflow. They brought clarity to a very messy situation and delivered a product that was robust and clean."
+                        </blockquote>
+                    </div>
+                    <div class="mt-8 flex items-center border-t border-gray-700 pt-4">
+                        <img class="w-12 h-12 rounded-full object-cover ring-2 ring-nu-purple-500/50" src="https://media.licdn.com/dms/image/v2/D4D03AQFKUoBnx-88mg/profile-displayphoto-scale_200_200/B4DZnn5IrOHsAc-/0/1760532139510?e=1766016000&v=beta&t=7cMQhh5zXEYe4frXd0rfc3ww89z1CffXVjXpXzbKnZg" alt="Rafael">
+                        <div class="ml-4">
+                            <p class="text-sm font-bold text-white">Rafael Carvalho</p>
+                            <p class="text-xs text-nu-purple-300">Founder, Egtec</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER / CONTACT SECTION -->
+    <footer id="contact" class="glass-card py-16 px-4 border-t border-nu-purple-800/50 shadow-inner shadow-black/40 rounded-b-none rounded-t-3xl mt-12">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-4xl font-bold text-white mb-12 text-center">Get In <span class="text-nu-purple-400">Touch</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+                
+                <!-- Left: Profile -->
+                <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                    <img src="https://avatars.githubusercontent.com/u/6857918?v=4" alt="Nywton Barros" class="w-32 h-32 rounded-full ring-4 ring-nu-purple-500/50 mb-6 object-cover shadow-2xl">
+                    <p class="text-2xl font-bold text-white">Nywton Barros</p>
+                    <p class="text-gray-400 text-sm mt-1 mb-6">Full Stack Developer & Cloud Architect</p>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/nywton" class="text-gray-400 hover:text-white transition text-2xl"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/in/nywton" class="text-gray-400 hover:text-blue-500 transition text-2xl"><i class="fab fa-linkedin"></i></a>
+                        <a href="mailto:nywton@gmail.com" class="text-gray-400 hover:text-nu-purple-400 transition text-2xl"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <!-- Right: Contact -->
+                <div class="md:col-span-2 space-y-8 border-l border-gray-700/50 pl-0 md:pl-12">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-6 border-b border-gray-700 pb-2">Direct Contact</h3>
+                        <div class="space-y-6">
+                            <a href="mailto:nywton@gmail.com" class="flex items-center space-x-4 group p-4 rounded-xl bg-gray-800/30 hover:bg-gray-800 transition">
+                                <div class="w-10 h-10 rounded-full bg-nu-purple-900/50 flex items-center justify-center text-nu-purple-400 group-hover:bg-nu-purple-600 group-hover:text-white transition">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <span class="text-gray-300 group-hover:text-white">nywton@gmail.com</span>
+                            </a>
+                            <a href="https://linkedin.com/in/nywton" target="_blank" class="flex items-center space-x-4 group p-4 rounded-xl bg-gray-800/30 hover:bg-gray-800 transition">
+                                <div class="w-10 h-10 rounded-full bg-blue-900/30 flex items-center justify-center text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <span class="text-gray-300 group-hover:text-white">linkedin.com/in/nywton</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center md:text-left pt-8">
+                         <p class="text-xs text-gray-600">© 2025 Nywton Barros. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-black/80 backdrop-blur-sm p-4">
+        <!-- Modal Content -->
+        <div class="glass-card w-full max-w-3xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl relative border-nu-purple-500/30">
+            
+            <!-- Header -->
+            <div class="p-6 border-b border-gray-700 flex justify-between items-start">
+                <div>
+                    <h3 id="modal-title" class="text-3xl font-bold text-white">Project Title</h3>
+                    <p id="modal-subtitle" class="text-nu-purple-400 font-semibold mt-1">Project Subtitle</p>
+                </div>
+                <button id="close-modal" class="text-gray-400 hover:text-white transition p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Scrollable Body -->
+            <div id="modal-body" class="p-6 overflow-y-auto space-y-6">
+                <!-- Image Section -->
+                <div class="rounded-xl overflow-hidden shadow-lg border border-gray-700/50">
+                    <img id="modal-image" src="" alt="Project Image" class="w-full h-auto max-h-[400px] object-cover transition-transform duration-700 hover:scale-105">
+                </div>
+
+                <!-- Data injected via JS -->
+                <p id="modal-description" class="text-gray-300 leading-relaxed"></p>
+
+                <!-- Tech Stack Section -->
+                <div>
+                    <h4 class="text-white font-bold mb-3 border-l-4 border-nu-purple-500 pl-3">Tech Stack</h4>
+                    <div id="modal-tech" class="flex flex-wrap gap-2">
+                        <!-- Badges injected here -->
+                    </div>
+                </div>
+
+                <!-- Features Section -->
+                <div>
+                    <h4 class="text-white font-bold mb-3 border-l-4 border-nu-purple-500 pl-3">Key Features</h4>
+                    <ul id="modal-features" class="list-disc list-inside text-gray-300 space-y-1 ml-2">
+                        <!-- List items injected here -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-6 border-t border-gray-700 bg-gray-900/40 text-right">
+                <button id="close-modal-btn" class="px-6 py-2 rounded-lg bg-gray-700 hover:bg-gray-600 text-white transition font-semibold">
+                    Close Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. SCROLL REVEAL & ANIMATIONS (Existing) ---
+            const revealElements = document.querySelectorAll('.reveal-on-scroll, .reveal-group');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, { root: null, threshold: 0.15, rootMargin: "0px" });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            const counters = document.querySelectorAll('.counter-number');
+            const countUp = (counter) => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / 200;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(() => countUp(counter), 20); 
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        countUp(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            counters.forEach(counter => counterObserver.observe(counter));
+
+
+            // --- 2. MODAL LOGIC (Updated with Image) ---
+            const modal = document.getElementById('project-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalSubtitle = document.getElementById('modal-subtitle');
+            const modalDescription = document.getElementById('modal-description');
+            const modalTech = document.getElementById('modal-tech');
+            const modalFeatures = document.getElementById('modal-features');
+            const modalImage = document.getElementById('modal-image'); // New Image Reference
+            const closeBtns = document.querySelectorAll('#close-modal, #close-modal-btn');
+            const triggers = document.querySelectorAll('.project-trigger');
+
+            // Data for projects
+            const projectsData = {
+                'vetias': {
+                    title: 'Project Vetias',
+                    subtitle: 'Telemedicine for Veterinarians',
+                    description: 'Vetias is a SaaS platform designed to bridge the gap between pet owners and veterinarians. During the pandemic, it allowed for remote consultations, prescription management, and appointment scheduling. It scaled to support over 11,000 tickets, reducing physical clinic load by 40%.',
+                    image: 'https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true',
+                    tech: ['Vue.js', 'Node.js', 'PostgreSQL', 'Socket.io', 'AWS S3'],
+                    features: [
+                        'Real-time chat and video conferencing',
+                        'Secure payment gateway integration',
+                        'Electronic prescription management',
+                        'Role-based access control for clinics'
+                    ]
+                },
+                'doeplus': {
+                    title: 'Doe+ Mobile Platform',
+                    subtitle: 'Connecting Donors to Blood Banks',
+                    description: 'Doe+ was created to address critical blood shortages in local hospitals. The app gamified the donation process and provided real-time alerts when specific blood types were low. It resulted in a 30% increase in repeat donors within the first 6 months.',
+                    image: 'https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true',
+                    tech: ['Java (Android)', 'PHP (Laravel)', 'MySQL', 'Google Maps API'],
+                    features: [
+                        'Geolocation-based urgent alerts',
+                        'Donor history and gamified badges',
+                        'Direct appointment scheduling with blood banks',
+                        'Social media sharing integration'
+                    ]
+                }
+            };
+
+            // Open Modal
+            triggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const projectId = trigger.getAttribute('data-project');
+                    const data = projectsData[projectId];
+
+                    if (data) {
+                        // Populate Text Data
+                        modalTitle.textContent = data.title;
+                        modalSubtitle.textContent = data.subtitle;
+                        modalDescription.textContent = data.description;
+                        
+                        // Populate Image
+                        modalImage.src = data.image;
+                        modalImage.alt = data.title + " Screenshot";
+                        
+                        // Clear and populate tech
+                        modalTech.innerHTML = '';
+                        data.tech.forEach(tech => {
+                            const span = document.createElement('span');
+                            span.className = 'text-xs font-mono text-sky-300 bg-sky-900/30 border border-sky-700/50 px-2 py-1 rounded';
+                            span.textContent = tech;
+                            modalTech.appendChild(span);
+                        });
+
+                        // Clear and populate features
+                        modalFeatures.innerHTML = '';
+                        data.features.forEach(feature => {
+                            const li = document.createElement('li');
+                            li.textContent = feature;
+                            modalFeatures.appendChild(li);
+                        });
+
+                        // Show Modal
+                        modal.classList.remove('hidden');
+                        document.body.classList.add('modal-open');
+                    }
+                });
+            });
+
+            // Close Modal
+            const closeModal = () => {
+                modal.classList.add('hidden');
+                document.body.classList.remove('modal-open');
+            };
+
+            closeBtns.forEach(btn => btn.addEventListener('click', closeModal));
+
+            // Close on click outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
