@@ -152,6 +152,11 @@
         body.modal-open {
             overflow: hidden;
         }
+        
+        /* Image Carousel Specific CSS */
+        #modal-image {
+            transition: opacity 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-nu-purple-500 selection:text-white">
@@ -590,9 +595,23 @@
 
             <!-- Scrollable Body -->
             <div id="modal-body" class="p-6 overflow-y-auto space-y-6">
-                <!-- Image Section -->
-                <div class="rounded-xl overflow-hidden shadow-lg border border-gray-700/50">
-                    <img id="modal-image" src="" alt="Project Image" class="w-full h-auto max-h-[400px] object-cover transition-transform duration-700 hover:scale-105">
+                <!-- Image Carousel Section (New Structure) -->
+                <div class="relative rounded-xl overflow-hidden shadow-lg border border-gray-700/50 bg-gray-900/50">
+                    <img id="modal-image" src="" alt="Project Image" class="w-full h-auto max-h-[400px] object-cover transition-opacity duration-300">
+                    
+                    <!-- Caption / Counter -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-black/60 text-white p-2 text-center text-sm font-medium">
+                        <span id="image-caption"></span> 
+                        (<span id="image-counter">1/3</span>)
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <button id="prev-btn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 md:p-4 rounded-r-lg transition duration-300 disabled:opacity-30 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="next-btn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 md:p-4 rounded-l-lg transition duration-300 disabled:opacity-30 disabled:cursor-not-allowed">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
 
                 <!-- Data injected via JS -->
@@ -663,48 +682,103 @@
             counters.forEach(counter => counterObserver.observe(counter));
 
 
-            // --- 2. MODAL LOGIC (Updated with Image) ---
+            // --- 2. MODAL & CAROUSEL LOGIC (Refactored) ---
             const modal = document.getElementById('project-modal');
             const modalTitle = document.getElementById('modal-title');
             const modalSubtitle = document.getElementById('modal-subtitle');
             const modalDescription = document.getElementById('modal-description');
             const modalTech = document.getElementById('modal-tech');
             const modalFeatures = document.getElementById('modal-features');
-            const modalImage = document.getElementById('modal-image'); // New Image Reference
+            const modalImage = document.getElementById('modal-image');
+            const imageCounter = document.getElementById('image-counter');
+            const imageCaption = document.getElementById('image-caption');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
             const closeBtns = document.querySelectorAll('#close-modal, #close-modal-btn');
             const triggers = document.querySelectorAll('.project-trigger');
 
-            // Data for projects
+            // State variables for the carousel
+            let currentImageIndex = 0;
+            let currentProjectImages = [];
+
+            // Project Data (now including 3 images per project)
             const projectsData = {
                 'vetias': {
                     title: 'Project Vetias',
                     subtitle: 'Telemedicine for Veterinarians',
                     description: 'Vetias is a SaaS platform designed to bridge the gap between pet owners and veterinarians. During the pandemic, it allowed for remote consultations, prescription management, and appointment scheduling. It scaled to support over 11,000 tickets, reducing physical clinic load by 40%.',
-                    image: 'https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true',
                     tech: ['Vue.js', 'Node.js', 'PostgreSQL', 'Socket.io', 'AWS S3'],
                     features: [
                         'Real-time chat and video conferencing',
                         'Secure payment gateway integration',
                         'Electronic prescription management',
                         'Role-based access control for clinics'
+                    ],
+                    images: [
+                        { url: 'https://github.com/nywton/resume/blob/master/img/vetias-chat.png', alt: 'Vetias Dashboard Overview', caption: 'Main dashboard view for clinicians.' },
+                        { url: 'https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png', alt: 'Vetias Chat Interface', caption: 'Real-time telemedicine consultation screen.' },
+                        { url: 'https://github.com/nywton/resume/blob/master/img/vetias-agent.png', alt: 'Vetias Appointment Scheduler', caption: 'Admin view of the scheduling system.' },
                     ]
                 },
                 'doeplus': {
                     title: 'Doe+ Mobile Platform',
                     subtitle: 'Connecting Donors to Blood Banks',
                     description: 'Doe+ was created to address critical blood shortages in local hospitals. The app gamified the donation process and provided real-time alerts when specific blood types were low. It resulted in a 30% increase in repeat donors within the first 6 months.',
-                    image: 'https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true',
                     tech: ['Java (Android)', 'PHP (Laravel)', 'MySQL', 'Google Maps API'],
                     features: [
                         'Geolocation-based urgent alerts',
                         'Donor history and gamified badges',
                         'Direct appointment scheduling with blood banks',
                         'Social media sharing integration'
+                    ],
+                    images: [
+                        { url: 'https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true', alt: 'Doe+ Mobile App Home', caption: 'Main screen of the mobile blood donation app.' },
+                        { url: 'https://placehold.co/700x400/820ad1/ffffff?text=Doe+Image+2', alt: 'Doe+ Donor Profile', caption: 'Donor profile with badges and history.' },
+                        { url: 'https://placehold.co/700x400/54008a/ffffff?text=Doe+Image+3', alt: 'Doe+ Map View', caption: 'Map showing nearby blood donation centers.' },
                     ]
                 }
             };
 
-            // Open Modal
+            // Function to update the displayed image and counter
+            const updateModalImage = () => {
+                if (currentProjectImages.length === 0) return;
+
+                const image = currentProjectImages[currentImageIndex];
+                
+                // Update image source and alt text
+                modalImage.src = image.url;
+                modalImage.alt = image.alt;
+                
+                // Update counter and caption
+                imageCounter.textContent = `${currentImageIndex + 1}/${currentProjectImages.length}`;
+                imageCaption.textContent = image.caption;
+
+                // Update navigation button states (disabled/enabled)
+                prevBtn.disabled = currentImageIndex === 0;
+                nextBtn.disabled = currentImageIndex === currentProjectImages.length - 1;
+            };
+
+            // Handle Previous button click
+            const handlePrev = () => {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    updateModalImage();
+                }
+            };
+
+            // Handle Next button click
+            const handleNext = () => {
+                if (currentImageIndex < currentProjectImages.length - 1) {
+                    currentImageIndex++;
+                    updateModalImage();
+                }
+            };
+
+            // Attach event listeners to navigation buttons
+            prevBtn.addEventListener('click', handlePrev);
+            nextBtn.addEventListener('click', handleNext);
+
+            // Open Modal Logic
             triggers.forEach(trigger => {
                 trigger.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -712,16 +786,16 @@
                     const data = projectsData[projectId];
 
                     if (data) {
+                        // Reset image state
+                        currentProjectImages = data.images;
+                        currentImageIndex = 0;
+
                         // Populate Text Data
                         modalTitle.textContent = data.title;
                         modalSubtitle.textContent = data.subtitle;
                         modalDescription.textContent = data.description;
                         
-                        // Populate Image
-                        modalImage.src = data.image;
-                        modalImage.alt = data.title + " Screenshot";
-                        
-                        // Clear and populate tech
+                        // Populate Tech Stack
                         modalTech.innerHTML = '';
                         data.tech.forEach(tech => {
                             const span = document.createElement('span');
@@ -730,13 +804,16 @@
                             modalTech.appendChild(span);
                         });
 
-                        // Clear and populate features
+                        // Populate Features
                         modalFeatures.innerHTML = '';
                         data.features.forEach(feature => {
                             const li = document.createElement('li');
                             li.textContent = feature;
                             modalFeatures.appendChild(li);
                         });
+
+                        // Initialize and show the first image
+                        updateModalImage();
 
                         // Show Modal
                         modal.classList.remove('hidden');
@@ -764,6 +841,17 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
                     closeModal();
+                }
+            });
+
+            // Key navigation for image carousel (when modal is open)
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('hidden')) {
+                    if (e.key === 'ArrowRight') {
+                        handleNext();
+                    } else if (e.key === 'ArrowLeft') {
+                        handlePrev();
+                    }
                 }
             });
         });
