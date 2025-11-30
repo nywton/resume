@@ -76,6 +76,20 @@
         .modal-visible {
             display: flex !important;
         }
+
+        /* Scrollbar styling for modal body */
+        #modal-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #modal-body::-webkit-scrollbar-thumb {
+            background-color: #820ad1; /* Nu-Purple */
+            border-radius: 4px;
+        }
+
+        #modal-body::-webkit-scrollbar-track {
+            background: #1f2937; /* Dark Gray */
+        }
     </style>
 </head>
 <body class="text-gray-100 antialiased">
@@ -393,7 +407,7 @@
             <!-- Copyright -->
             <div class="mt-12 pt-6 border-t border-gray-700/50 text-center">
                 <p class="text-gray-500 text-sm">
-                    &copy; 2025 Nywton Barros. All rights reserved. | Full Stack Development & Innovation.
+                    &copy; 2024 Nywton Barros. All rights reserved. | Full Stack Development & Innovation.
                 </p>
             </div>
         </div>
@@ -401,27 +415,67 @@
 
     <!-- Project Detail Modal -->
     <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-        <div id="modal-content-wrapper" class="glass-card w-full max-w-3xl p-6 md:p-10 relative transform translate-y-0 transition-transform duration-300">
+        <div id="modal-content-wrapper" class="glass-card w-full max-w-4xl p-6 md:p-10 relative transform translate-y-0 transition-transform duration-300 border-2 border-nu-purple-600/50 max-h-[90vh]">
             <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-nu-purple-400 text-3xl transition duration-200" aria-label="Close modal">
                 <i class="fas fa-times-circle"></i>
             </button>
-            <h3 id="modal-title" class="text-3xl font-extrabold text-nu-purple-400 mb-4"></h3>
-            <span id="modal-category" class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-3 block"></span>
             
-            <div id="modal-body" class="text-gray-300 space-y-4 max-h-[70vh] overflow-y-auto pr-2">
-                <!-- Dynamic content goes here -->
-            </div>
+            <!-- Modal Body: Contains all scrollable content -->
+            <div id="modal-body" class="space-y-6 overflow-y-auto max-h-[calc(90vh-80px)] pr-4">
+                
+                <h3 id="modal-title" class="text-3xl font-extrabold text-nu-purple-400"></h3>
+                <span id="modal-category" class="text-sm font-semibold text-gray-400 uppercase tracking-widest block"></span>
 
-            <p id="modal-tech" class="font-mono text-sm text-sky-400 mt-6 pt-4 border-t border-gray-700/50"></p>
+                <!-- Image Gallery Section -->
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4 border-b border-gray-700/50 pb-2">Screenshots & UI</h4>
+                    <div id="modal-gallery" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <!-- Images will be injected here -->
+                    </div>
+                </div>
+
+                <!-- Details Section -->
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4 border-b border-gray-700/50 pb-2">Key Achievements</h4>
+                    <div id="modal-details" class="text-gray-300 space-y-4">
+                        <!-- List details will be injected here -->
+                    </div>
+                </div>
+
+                <p id="modal-tech" class="font-mono text-sm text-sky-400 pt-4 border-t border-gray-700/50"></p>
+            </div>
         </div>
     </div>
+
+    <!-- Image Viewer Modal (NEW FEATURE) -->
+    <div id="image-viewer-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 bg-black/95 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
+        <div class="relative w-full h-full flex items-center justify-center">
+            
+            <!-- Close Button -->
+            <button id="close-viewer-btn" class="absolute top-4 right-4 text-white hover:text-nu-purple-400 text-4xl transition duration-200 z-[120]" aria-label="Close image viewer">
+                <i class="fas fa-times-circle"></i>
+            </button>
+
+            <!-- Image Container - Max width/height of viewport, maintaining aspect ratio -->
+            <img id="viewer-image" src="" alt="Project Screenshot View" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition duration-300 transform scale-95 md:scale-100">
+
+        </div>
+    </div>
+
 
     <!-- JavaScript for Modal Functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Main Modal Elements
             const modal = document.getElementById('project-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const projectLinks = document.querySelectorAll('.project-detail-link');
+
+            // Image Viewer Elements (NEW)
+            const imageViewerModal = document.getElementById('image-viewer-modal');
+            const closeViewerBtn = document.getElementById('close-viewer-btn');
+            const viewerImage = document.getElementById('viewer-image');
+
 
             const projectsData = {
                 // Project Vetias Data
@@ -434,6 +488,13 @@
                         "Processed and managed over 11,000 resolved support tickets and patient cases, demonstrating high reliability and volume handling.",
                         "Implemented real-time communication tools (chat and video conferencing) using Socket.io to enable immediate specialist feedback.",
                         "Designed the system for secure data handling of animal health records and clinic billing information, ensuring privacy and reliability."
+                    ],
+                    // Updated gallery with provided URLs
+                    gallery: [
+                        "https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png?raw=true", 
+                        "https://github.com/nywton/resume/blob/master/img/vetias-chat.png?raw=true",
+                        // Using the dashboard image again to keep the 3-column grid consistent
+                        "https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png?raw=true" 
                     ]
                 },
                 // Project Doe+ Data
@@ -446,9 +507,33 @@
                         "The platform included geo-location services and personalized scheduling features, leading to a 25% increase in successful donation appointments.",
                         "Developed a robust and secure PHP/MySQL backend to manage donor profiles, health records, and appointment data compliance.",
                         "Received institutional recognition for providing a critical technological solution to address regional blood shortage challenges."
+                    ],
+                    // Added gallery with placeholder images
+                    gallery: [
+                        "https://placehold.co/400x300/292524/fda4af?text=Doe+Mobile+Home", // Dark background, light red/pink text
+                        "https://placehold.co/400x300/292524/fda4af?text=Donor+Schedule+Screen",
+                        "https://placehold.co/400x300/292524/fda4af?text=Geo-Location+Map"
                     ]
                 }
             };
+
+            /**
+             * Handles opening the secondary image viewer modal.
+             * @param {string} imageUrl The URL of the image to display.
+             */
+            function openImageViewer(imageUrl) {
+                viewerImage.src = imageUrl;
+                imageViewerModal.classList.add('modal-visible');
+                // Note: We don't disable body scroll here because it was already disabled by the main modal
+            }
+
+            /**
+             * Handles closing the secondary image viewer modal.
+             */
+            function closeImageViewer() {
+                imageViewerModal.classList.remove('modal-visible');
+                viewerImage.src = ""; // Clear source
+            }
 
             function openModal(projectId) {
                 const project = projectsData[projectId];
@@ -458,19 +543,45 @@
                 document.getElementById('modal-category').textContent = project.category;
                 document.getElementById('modal-tech').textContent = "Tech Stack: " + project.tech;
                 
-                const body = document.getElementById('modal-body');
-                body.innerHTML = ''; // Clear existing content
+                const detailListContainer = document.getElementById('modal-details');
+                detailListContainer.innerHTML = ''; // Clear existing content
                 
+                // 1. Render Details List
                 const detailList = document.createElement('ul');
-                    detailList.className = 'list-disc pl-5 space-y-2';
+                detailList.className = 'list-disc pl-5 space-y-3 text-gray-300';
 
                 project.details.forEach(detail => {
                     const listItem = document.createElement('li');
                     listItem.textContent = detail;
+                    listItem.className = 'marker:text-nu-purple-400';
                     detailList.appendChild(listItem);
                 });
+                detailListContainer.appendChild(detailList);
 
-                body.appendChild(detailList);
+                // 2. Render Gallery Images and attach click listener
+                const galleryContainer = document.getElementById('modal-gallery');
+                galleryContainer.innerHTML = ''; // Clear existing images
+                
+                project.gallery.forEach(url => {
+                    const imgWrapper = document.createElement('div');
+                    imgWrapper.className = 'h-52 sm:h-52 rounded-lg overflow-hidden border border-gray-700 transition duration-300 hover:shadow-xl hover:shadow-nu-purple-500/30 cursor-pointer';
+                    
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = project.title + " screenshot";
+                    img.className = 'w-full h-full object-cover transition duration-500 hover:scale-[1.05]';
+                    img.onerror = function() {
+                        this.src = "https://placehold.co/400x300/292524/a5b4fc?text=Image+Unavailable";
+                        this.alt = "Placeholder: Image unavailable";
+                    };
+                    
+                    // Attach click handler to open the image viewer (NEW)
+                    img.addEventListener('click', () => openImageViewer(url));
+
+                    imgWrapper.appendChild(img);
+                    galleryContainer.appendChild(imgWrapper);
+                });
+
 
                 modal.classList.add('modal-visible');
                 document.body.style.overflow = 'hidden'; // Prevent scrolling background
@@ -479,9 +590,11 @@
             function closeModal() {
                 modal.classList.remove('modal-visible');
                 document.body.style.overflow = ''; // Restore scrolling
+                // Ensure the image viewer is also closed if it was open
+                closeImageViewer(); 
             }
 
-            // Event Listeners for links
+            // Event Listeners for project links
             projectLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -490,7 +603,7 @@
                 });
             });
 
-            // Event Listeners for closing modal
+            // Event Listeners for closing the main modal
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => {
                 // Close modal if clicking outside the content box
@@ -498,10 +611,24 @@
                     closeModal();
                 }
             });
+
+            // Event Listeners for closing the image viewer modal (NEW)
+            closeViewerBtn.addEventListener('click', closeImageViewer);
+            imageViewerModal.addEventListener('click', (e) => {
+                // Close viewer modal if clicking on the background (but not the image itself)
+                if (e.target.id === 'image-viewer-modal') {
+                    closeImageViewer();
+                }
+            });
+            
+            // Global Escape key listener (handles both modals)
             document.addEventListener('keydown', (e) => {
-                // Close modal on escape key
-                if (e.key === 'Escape' && modal.classList.contains('modal-visible')) {
-                    closeModal();
+                if (e.key === 'Escape') {
+                    if (imageViewerModal.classList.contains('modal-visible')) {
+                        closeImageViewer(); // Close image viewer first
+                    } else if (modal.classList.contains('modal-visible')) {
+                        closeModal(); // Then close main modal
+                    }
                 }
             });
         });
