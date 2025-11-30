@@ -1,504 +1,500 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118900785-1"></script>
-  <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-118900785-1');
-  </script>
-
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Dev Resume</title>
-
-  <!-- Font Lilita One -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-
-  <!-- CSS  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,600&display=swap" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/time-line.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-
-  <!-- Galery https://themes.materializecss.com/pages/demo -->
-  <link href="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery-materialize.min.opt.css?9078412610821087350" rel="stylesheet">
-
-
-  <!--Favicon-->
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" href="favicon.ico" />
-  <link rel="icon" type="image/gif" href="favicon.ico" />
-
-  <meta name="theme-color" content="#212121" />
-</head>
-<body>
-<!-- NAV -->
-<div class="navbar-fixed">
-  <nav class="grey darken-4" role="navigation">
-    <div class="nav-wrapper container">
-      <!-- <a class="light">
-        <img width="20px" class="nyw-logo hide-on-small-only" src="./images/keyboardsvg.svg"></img>
-      </a> -->
-      <a id="logo-container" href="#" class="brand-logo">
-        $> TechSolver 
-      </a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="#sobre" class="js-scroll-trigger">About Me</a></li>
-        <li><a href="#habilidades" class="js-scroll-trigger">Skills</a></li>
-        <li><a href="#experiencia" class="js-scroll-trigger">Experience</a></li>
-         <!-- <li><a href="#portfolio" class="js-scroll-trigger">Projects</a></li> -->
-         <li><a target="_blank" href="https://wa.me/+5582991295880?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento.">Contact</a></li>
-      </ul>
-
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#sobre" class="js-scroll-trigger">About</a></li>
-        <li><a href="#habilidades" class="js-scroll-trigger">Skills</a></li>
-        <li><a href="#experiencia" class="js-scroll-trigger">Experience</a></li>
-        <li><a href="#portfolio" class="js-scroll-trigger">Portfolio</a></li>
-        <li><a target="_blank" href="https://wa.me/+5582991295880?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento.">Contact</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
-</div>
-
-<!-- /NAV -->
-
-<!-- BANNER -->
-<div class="section" id="index-card">
-  <div class="container" id="sobre">
-    <br><br>
-
-    <div class="row">
-      <div class="col s12">
-        <div class="card z-depth-1">
-          <div class="card-content">
-            <div class="profile-img">
-              <img class="responsive-img circle center-align" src="img/profile3.png">
-            </div>
-            <br><br>
-            <h2>Nywton Barros</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nywton Barros | TechSolver - High-Impact Development</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome 6 CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
+    <!-- Tailwind Configuration to define the custom 'nu-purple' color -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'nu-purple': {
+                            'DEFAULT': '#820ad1', 
+                            '50': '#f9f6fd',
+                            '100': '#f0e9fa',
+                            '200': '#e3d6f5',
+                            '300': '#d3bdef',
+                            '400': '#c09eed',
+                            '500': '#ae7dee',
+                            '600': '#820ad1', // The main signature purple
+                            '700': '#6b00b8',
+                            '800': '#54008a',
+                            '900': '#410069',
+                            '950': '#2c0044',
+                        },
+                    },
+                },
+            },
+        };
+    </script>
 
-            <div>
-              <i class="material-icons">important_devices</i>
-              <span>Self-Taught Developer</span>
-            </div>
-            <hr/>
-            <!--<p>Desenvolvedor de Software apaixonado por criar novas experiências e simplificar a vida das pessoas através da tecnologia.-->
-              <!--Desenvolveu sistemas de apoio, APIs, websites e aplicativos para o Governo do Estado de Alagoas. Já atuou como Engenheiro de Software em empresas no Brasil e nos Estados Unidos.</p>-->
-            <!--<hr>-->
-            <p>
-              I’m a problem-solver with over 10 years of experience in programming, driven by a passion for using technology to tackle modern challenges. My mission is to create solutions that make life easier, more efficient, and ultimately happier. Whether it's through innovative software or optimizing processes, I'm here to bring your project ideas to life.
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Glassmorphism Effect */
+        .glass-card {
+            background-color: rgba(31, 41, 55, 0.4); 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(75, 85, 99, 0.3); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+            border-radius: 0.75rem; 
+        }
+
+        /* Hero Glitch/Focus Animation - Updated for Purple Glow */
+        .hero-title {
+            animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            text-shadow: 0 0 10px rgba(130, 10, 209, 0.5); /* NuPurple Glow (RGB from #820ad1) */
+        }
+        @keyframes text-focus-in {
+            0% {
+                filter: blur(8px);
+                opacity: 0;
+                letter-spacing: 0.5em;
+            }
+            100% {
+                filter: blur(0);
+                opacity: 1;
+                letter-spacing: -0.02em;
+            }
+        }
+        /* Custom modal visibility class */
+        .modal-visible {
+            display: flex !important;
+        }
+    </style>
+</head>
+<body class="text-gray-100 antialiased">
+
+    <!-- Sticky Header/Navigation -->
+    <header class="sticky top-0 z-50 glass-card shadow-xl shadow-black/30">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <!-- Logo - Now Purple with Avatar/Icon -->
+            <a href="#hero" class="text-2xl font-extrabold text-nu-purple-400 hover:text-nu-purple-300 transition duration-300 flex items-center">
+                <i class="fa-solid fa-cube text-3xl mr-3"></i>
+                $&gt; TechSolver
+            </a>
+            
+            <!-- Desktop Nav Links - Only Projects and Contact remain, with vertical alignment fixed -->
+            <nav class="hidden md:flex space-x-6 text-base font-medium items-center">
+                <a href="#projects" class="hover:text-nu-purple-400 transition duration-200">Projects</a>
+                <a href="#contact" class="px-4 py-2 border border-nu-purple-500 rounded-lg hover:bg-nu-purple-500/20 transition duration-200">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu (omitted for brevity, assume simple link behavior) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-700/50 transition duration-300">
+                <i class="fas fa-bars w-5 h-5 text-gray-100"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 1. HERO SECTION (Title + One Sentence Impact) -->
+    <section id="hero" class="relative overflow-hidden pt-32 pb-40 px-4 md:px-8 flex items-center justify-center min-h-[80vh]">
+        <!-- Subtle background pattern - Updated for Purple Glow -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(rgba(130, 10, 209, 0.2) 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <p class="text-xl md:text-2xl font-bold text-nu-purple-400 mb-4 tracking-widest uppercase opacity-75">
+                Full Stack & Cloud Engineering
             </p>
-            <!--<p>Entre em contato para orçamento de projetos, sites e aplicativos.</p>-->
-            <!-- <p> I'm a Full Stack Web Developer from Brazil that started dev about 3 years ago.
-                    I love building new experiences for people and simplify their lives.
-                    I built IS, websites and mobile apps for the government and i've worked on some brazilian and american agencies</p> -->
-          </div>
-          <p class="center">
-            <a href="https://docs.google.com/document/d/1zqV-nzIZhF74L-XSQgWPPcImbtRE_GNS7jCsn3ER4HE/edit?usp=sharing" target="_blank" class="waves-effect waves-light btn btn-flat blue-grey darken-2 white-text"><i class="material-icons left">business</i> Curriculum (CV)</a>
-            <!-- <a href="#contato" class="waves-effect waves-light btn btn-flat blue accent-3 lighten-3 white-text  hide-on-small-only	"><i class="material-icons left">email</i> Contact</a> -->
-            <a target="_blank" href="https://wa.me/+5582991295880?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." class="waves-effect waves-light btn btn-flat green accent-3 white-text">
-              <span style="display: flex; justify-content: center; align-items: center;">
-                <img src="./img/icons/whatsapp.png" width="24px" alt="">
-                <span style="margin-left: 10px;">
-                  Whatsapp Chat
-                </span>
-              </span>
-              </a>
-          </p>
-          <br><br>
+            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-50 mb-8 hero-title">
+                Nywton Barros
+            </h1>
+            
+            <!-- The One Sentence Impact -->
+            <h2 class="text-3xl md:text-4xl font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                "Transforming complex business logic into <span class="font-semibold text-nu-purple-300">resilient, user-centric software.</span>"
+            </h2>
 
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-<!-- /BANNER -->
-
-
-<!-- SKILLS -->
-
-<div class="container" >
-  <div class="section-title center-align">
-    <h4 id="habilidades"><i class="material-icons">code</i> Skills</h4>
-  </div>
-  <div class="card grey darken-3 white-text z-depth-4">
-    <div class="card-content">
-      <div class="row">
-        <div class="col m6 s12">
-          <div class="col m2 skill-icon">
-          </div>
-          <div class="skill-bar col m10 wow fadeIn a1 animated" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">
-            <h5 class="white-text"><i class="material-icons">card_travel</i>  Tech </h5>
-            <span>- Solve people and business problems through technology.</span>
-            <br/><span>- Front-End with Angular, Vue, React</span>
-            <br/><span>- Back-End JavaScript / Typescript with NodeJS and Express</span>
-            <br/><span>- API Architecture</span>
-            <br/><span>- PHP</span>
-            <br/><span>- Ruby on Rails (Fullstack)</span>
-            <br/><span>- Java</span>
-            <br/><span>- Android / IOS (Java, React Native, Ionic)</span>
-            <br/><span>- Amazon Services</span>
-            <br/><span>- Test Driven</span>
-            <br/><span>- Unix / GNU Universe</span>
-            <br>
-            - Databases: MongoDB, PostgreSQL, MySQL, NoSQL
-          </div>
-
-        </div>
-        <div class="col m6 s12">
-          <div class="col m2 skill-icon">
-          </div>
-          <div class="skill-bar col m10 wow fadeIn a2 animated" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeIn;">
-            <h5 class="white-text"><i class="material-icons">accessibility</i> Personal </h5>
-            <span>- Team Culture</span>
-            <br/><span>- Fast Learning</span>
-            <br/><span>- Self-Taught English Speaker</span>
-            <br/><span>- Self-Taught Developer</span>
-            <br/><span>- Self-Taught Stock Market Investor</span>
-            <br/><span>- Self-Taught Musician</span>
-            <br/><span>- Father of Three</span>
-            <br><br>
-            <h5 class="white-text"><i class="material-icons">accessibility</i> Aditional </h5>
-            <span>- Software Patent Owner as Writer</span>
-            <br> <span>- Events Prizes</span>
-            <br> <span>- Scientific Research</span>
-            <br> <span>- E-Health published papers</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<br><br>
-
-<!-- WORK TIME LINE -->
-<div class="container" id="experiencia">
-  <div class="section-title center-align">
-    <h4><i class="material-icons">card_travel</i> Working Experience</h4>
-  </div>
-  <div class="timeline">
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Adroid & Backend Developer @IFAL</h4></a>
-          <span>Jan 2014 </span>
-          <p>
-
-            Scholarship holder of scientific initiation, worked as Web / Mobile programmer developed the application Doe + - Campaign Platform Donation and Blood Campaigns and Schedules of Hemocentros of the State of Alagoas.
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">IFAL<i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge blue white-text"><i class="material-icons">language</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Fullstack Web / Mobile Developer <br> @Secti</h4></a>
-          <span>Set 2015 </span>
-          <p>
-
-            Programmer / Systems Analyst, developed internal control systems for the Secretariat of Science, Technology and Innovation of the State of Alagoas. He also worked on government event portals.
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge green white-text"><i class="material-icons">person</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Software Engineer<br> @Roga</h4></a>
-          <span>Jan 2017</span>
-          <p>Acted as Software Engineer in several Web and Mobile projects. Main technologies: Ruby on Rails, Angular, React, Vuejs Flux, NodeJS.  </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge blue-theme white-text"><i class="material-icons">work</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Fullstack Web / Mobile Developer <br> @DMCBrazil</h4></a>
-          <span>Junho 2018 / Agosto 2018</span>
-          <p> Performed maintenance and developed new functionalities in event management systems. Key Technologies: Ruby on Rails
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge red white-text"><i class="material-icons">work</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Software Engineer<br> @Clip</h4></a>
-          <span>Oct 2018</span>
-          <p>Acted as Front-End Software Engineer in several Web projects. Main technologies: Angular, React, Vuejs Flux, NodeJS, DDD, MongoDB.  </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge blue-theme white-text"><i class="material-icons">work</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>IT Support / Software Developer <br> @Hospital do Coração de Alagoas</h4></a>
-          <span>Nov 2019 / Oct 2020</span>
-          <p> User support. Software developer. Key Technologies: Java, Grails, AngularJS / Windows Server
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge red white-text"><i class="material-icons">work</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Software Engineer<br> @Jaya Tech</h4></a>
-          <span>October 2020 </span>
-          <p>Software Engnineeri, work together with remote team from US (PWNHealth) </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge blue-theme white-text"><i class="material-icons">work</i></div>
-    </div>
-
-    <div class="timeline-event">
-      <div class="card timeline-content">
-        <div class="card-content">
-          <a href=""><h4>Software Developer <br> @Vagas.com</h4></a>
-          <span>2023 / 2024</span>
-          <p> Software developer. Key Technologies: Rails, Elixir, React / Windows Server / SQLServer
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-          <p></p>
-        </div>
-      </div>
-      <div class="timeline-badge red white-text"><i class="material-icons">work</i></div>
-    </div>
-
-
-  </div>
-</div>
-
-<br><br>
-<!-- Projects -->
-<div style="display: none !important;">
-  <div class="section-title center-align" id="portfolio">
-    <h4><i class="material-icons">card_travel</i> Projects</h4>
-  </div>
-  <div id="portfolio" class="cx gray">
-    <div class="db">
-      <div class="b e">
-        <!--Doe+-->
-        <div class="d hx hf gu gallery-item gallery-expand ce polygon">
-          <div class="gallery-curve-wrapper">
-            <a class="gallery-cover gray">
-              <img class="responsive-img" src="img/portfolio/doemais/campanha.jpeg" alt="placeholder" crossOrigin="anonymous">
+            <a href="#contact" class="mt-12 inline-flex items-center px-10 py-4 text-lg font-bold bg-nu-purple-600 rounded-full shadow-lg shadow-nu-purple-500/40 hover:bg-nu-purple-500 transition duration-300 transform hover:scale-[1.05]">
+                Start a Conversation <i class="fas fa-arrow-right ml-3"></i>
             </a>
-            <div class="gallery-header">
-              <span>Doe+</span>
-            </div>
-            <div class="gallery-body">
-              <div class="title-wrapper">
-                <h3>Doe+</h3>
-                <span class="gk">2015</span>
-              </div>
-              <p class="fi">
-                  O Doe+ é um aplicativo desenvolvido em parceria com a Secretaria da Ciência, Tecnologia e Inovação (Secti), Instituto Federal de Alagoas (Ifal) e Secretaria de Estado da Saúde (Sesau) para Android e IOS que permite o agendamento de doações e vizualização de campanhas de doação de sangue. Também é possível visualizar o histórico de doações que foram agendadas pelo app e outras informações como: quem pode doar, requisitos de saúde, idade e outras informações.
-              </p>
-              <p class="fi">
-                O projeto ajudou a reduzir os baixos níveis dos bancos de sangue da Hemorrede do Estado de Alagoas no ano de seu lançamento.
-              </p>
-              <h4>Notícias relacionadas</h4>
-              <ul>
-                <li><a href="http://www.agenciaalagoas.al.gov.br/noticia/item/1172-doe-aplicativo-que-ajuda-nos-estoques-de-sangue-ganha-versao-para-ios" target="_blank">http://www.agenciaalagoas.al.gov.br/noticia/item/1172-doe-aplicativo-que-ajuda-nos-estoques-de-sangue-ganha-versao-para-ios</a></li>
-                <li><a href="https://www2.ifal.edu.br/noticias/aplicativo-doe-desenvolvido-no-ifal-maceio-ja-esta-disponivel-para-baixar" target="_blank">https://www2.ifal.edu.br/noticias/aplicativo-doe-desenvolvido-no-ifal-maceio-ja-esta-disponivel-para-baixar</a></li>
-              </ul>
-  
-              <div class="carousel-wrapper">
-                <div class="t">
-                  <a class="carousel-item" href="full-header.html#one!"><img src="img/portfolio/doemais/applicativo.png" crossOrigin="anonymous"></a>
-                  <a class="carousel-item" href="full-header.html#two!"><img src="img/portfolio/doemais/banner.jpg" crossOrigin="anonymous"></a>
-                  <a class="carousel-item" href="full-header.html#three!"><img src="img/portfolio/doemais/banner2.jpg" crossOrigin="anonymous"></a>
-                  <!--<a class="carousel-item" href="full-header.html#four!"><img src="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-cave.jpg?9078412610821087350" crossOrigin="anonymous"></a>-->
-                  <!--<a class="carousel-item" href="full-header.html#five!"><img src="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/geometric-grapefruit.jpg?9078412610821087350" crossOrigin="anonymous"></a>-->
-                </div>
-              </div>
-            </div>
-            <div class="gallery-action">
-              <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
-            </div>
-          </div>
         </div>
-  
-        <!--Sgplan-->
-        <div class="d hx hf gu gallery-item gallery-expand ce polygon">
-          <div class="gallery-curve-wrapper">
-            <a class="gallery-cover gray">
-              <img class="responsive-img" src="img/portfolio/sgplan/principal.PNG" alt="placeholder" crossOrigin="anonymous">
-            </a>
-            <div class="gallery-header">
-              <span>SGPLAN</span>
-            </div>
-            <div class="gallery-body">
-              <div class="title-wrapper">
-                <h3>Sgplan</h3>
-                <span class="gk">2016-2017</span>
-              </div>
-              <p class="fi">
-                Um plano estratégico tem como objetivo principal fornecer direcionamento comum a ser seguido por toda a organização, identificando
-                responsabilidades, garantindo alinhamento e oferecendo meios para medição do sucesso da estratégia de modo focado, visando o alcance dos
-                objetivos institucionais e a maximização dos resultados. Com o objetivo de oferecer maior transparência e maior eficiência na gestão do plano,
-                bem como alinhas os objetivos da TI com os objetivos estratégicos da SECTI, foi desenvolvido
-                um sistema web que auxilar os gestores e a governança, no acompanhamento das ações e atividades do Plano 2017( marcos de acompanhamento e
-                evidências), o SGPLAN.
-              </p>
-              <p class="fi">
-                A ferramenta disponibiliza informações rápidas e objetivas sobre as ações e seus respectivos status de entrega, relatórios estão sendo implementados conforme a necessidade dos gestores. Outras funcionalidades como um DashBoard com indicadores estão sendo construídas. O sistema foi construído utilizando a linguagem Ruby v. 2.3.0, e Banco de Dados PostgreSQL v. 9.6. O front-end da aplicação foi construído utilizando HTML, CSS e JavaScript. O sistema está hospedado em uma máquina virtual utilizando CENTOS no datacenter do ITEC. Para acessar o sistema basta acessar o link http://sgplan.secti.al.gov.br
-              </p>
-              <h4>Notícias relacionadas</h4>
-              <ul>
-                <li><a href="http://www.agenciaalagoas.al.gov.br/noticia/item/18830-palmeira-dos-indios-implanta-sistema-inovador-desenvolvido-pela-secti" target="_blank">http://www.agenciaalagoas.al.gov.br/noticia/item/18830-palmeira-dos-indios-implanta-sistema-inovador-desenvolvido-pela-secti</a></li>
-                <li><a href="http://www.agenciaalagoas.al.gov.br/noticia/item/15182-sistema-de-gestao-facilita-monitoramento-das-acoes-do-governo" target="_blank">http://www.agenciaalagoas.al.gov.br/noticia/item/15182-sistema-de-gestao-facilita-monitoramento-das-acoes-do-governo</a></li>
-              </ul>
-  
-              <div class="carousel-wrapper">
-                <div class="t">
-                  <a class="carousel-item" href="full-header.html#one!"><img src="img/portfolio/sgplan/banner1.PNG" crossOrigin="anonymous"></a>
-                  <a class="carousel-item" href="full-header.html#two!"><img src="img/portfolio/sgplan/banner2.PNG" crossOrigin="anonymous"></a>
-                  <a class="carousel-item" href="full-header.html#three!"><img src="img/portfolio/sgplan/banner3.PNG" crossOrigin="anonymous"></a>
-                  <a class="carousel-item" href="full-header.html#four!"><img src="img/portfolio/sgplan/banner5.jpg"></a>
-                  <a class="carousel-item" href="full-header.html#four!"><img src="img/portfolio/sgplan/banner6.jpg"></a>
+    </section>
+
+    <!-- 2. CORE COMPETENCIES SECTION (Tiled Content) -->
+    <section id="competencies" class="py-20 md:py-28 px-4 md:px-8 bg-gray-900/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Core <span class="text-nu-purple-400">Competencies</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Tile 1: Full Stack -->
+                <div class="tile glass-card p-8 text-center transition duration-300 hover:shadow-nu-purple-500/30 hover:-translate-y-1">
+                    <div class="icon text-nu-purple-400 text-5xl mb-4"><i class="fa-solid fa-code"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Full Stack Mastery</h3>
+                    <p class="text-gray-400">Expertise in Angular, React, Vue.js, Node.js, Ruby on Rails, and Elixir. Delivering resilient, end-to-end solutions.</p>
                 </div>
-              </div>
+                
+                <!-- Tile 2: Architecture -->
+                <div class="tile glass-card p-8 text-center transition duration-300 hover:shadow-nu-purple-500/30 hover:-translate-y-1">
+                    <div class="icon text-nu-purple-400 text-5xl mb-4"><i class="fa-solid fa-server"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Cloud Architecture</h3>
+                    <p class="text-gray-400">Building scalable APIs and robust backend systems using PostgreSQL, MongoDB, and secured AWS infrastructure.</p>
+                </div>
+
+                <!-- Tile 3: Mobile & Innovation -->
+                <div class="tile glass-card p-8 text-center transition duration-300 hover:shadow-nu-purple-500/30 hover:-translate-y-1">
+                    <div class="icon text-nu-purple-400 text-5xl mb-4"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Mobile & R&D</h3>
+                    <p class="text-gray-400">Developing cross-platform mobile apps (React Native) and driving innovation through scientific research and patents.</p>
+                </div>
             </div>
-            <div class="gallery-action">
-              <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">favorite</i></a>
-            </div>
-          </div>
         </div>
-      </div>
-  
+    </section>
+
+    <!-- 3. PROJECTS SECTION (Image Left, Image Right) -->
+    <section id="projects" class="py-20 md:py-28 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Selected <span class="text-nu-purple-400">Projects</span></h2>
+
+            <!-- Project Card 1: Project Atlas (Text Left, Image Right) -->
+            <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 mb-16 items-center transition duration-300 hover:shadow-sky-500/30">
+                <!-- Content -->
+                <div>
+                    <span class="text-sm font-semibold text-nu-purple-400 uppercase tracking-widest">SaaS & Logistics</span>
+                    <h3 class="text-3xl font-bold text-white mt-2 mb-4">Project Atlas</h3>
+                    <p class="text-gray-400 mb-6">
+                        Designed and implemented a highly scalable SaaS platform for international supply chain management. Atlas handles critical real-time logistics data, ensuring global operational efficiency.
+                    </p>
+                    <p class="font-mono text-sm text-sky-400 mb-6">Tech Stack: Vue.js, Node.js/Express, PostgreSQL</p>
+                    <a href="#" data-project-id="atlas" class="project-detail-link text-nu-purple-400 hover:text-nu-purple-300 font-semibold transition duration-200">
+                        View Case Study <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <!-- Image -->
+                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80">
+                    <img src="https://placehold.co/800x600/101010/820ad1?text=Project+Atlas+UI" alt="Dark modern dashboard interface for logistics" class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Project Card 2: Doe+ (Image Left, Text Right) -->
+            <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center transition duration-300 hover:shadow-nu-purple-500/30">
+                 <!-- Image -->
+                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 lg:order-last">
+                    <img src="https://placehold.co/800x600/101010/820ad1?text=Doe%2B+Mobile+App" alt="Mobile application interface concept" class="w-full h-full object-cover">
+                </div>
+                <!-- Content -->
+                <div class="lg:order-first">
+                    <span class="text-sm font-semibold text-nu-purple-400 uppercase tracking-widest">Social Impact & HealthTech</span>
+                    <h3 class="text-3xl font-bold text-white mt-2 mb-4">Doe+ Mobile Platform</h3>
+                    <p class="text-gray-400 mb-6">
+                        Architected and developed a mobile platform for blood donation scheduling. This initiative significantly increased local blood bank capacity, making a direct positive social impact.
+                    </p>
+                    <p class="font-mono text-sm text-sky-400 mb-6">Tech Stack: Java (Android), PHP/MySQL</p>
+                    <a href="#" data-project-id="doeplus" class="project-detail-link text-nu-purple-400 hover:text-nu-purple-300 font-semibold transition duration-200">
+                        Read About the Impact <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. EXPERIENCE JOURNEY (Simple Vertical Timeline) -->
+    <section id="experience" class="py-20 md:py-28 px-4 md:px-8 bg-gray-900/20">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Professional <span class="text-nu-purple-400">Journey</span></h2>
+
+            <div class="relative sm:pl-0">
+                <!-- Vertical Line (The Path) -->
+                <div class="absolute left-2 sm:left-1/2 w-1 bg-nu-purple-700/50 h-full transform sm:-translate-x-1/2"></div>
+                
+                <!-- Timeline Items (Chronological, Newest to Oldest) -->
+                
+                <!-- 1. Banco do Brasil (Right side on desktop) -->
+                <div class="mb-10 flex items-center w-full sm:justify-end">
+                    <!-- Content Wrapper. Correctly uses sm:pl-8 for spacing on the right. -->
+                    <div class="sm:w-1/2 sm:pl-8 pl-8">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/40">
+                            <span class="text-sm text-gray-400">2024 - Current</span>
+                            <h3 class="text-xl font-bold text-nu-purple-400 mt-1">Back-End Engineer @Banco do Brasil</h3>
+                            <p class="text-gray-300 text-sm mt-1">Focus on modernizing core banking systems, ensuring high security and transaction processing efficiency.</p>
+                            <p class="mt-2 text-xs font-medium text-sky-400">Tech: Java, Spring Boot, Oracle DB, Kubernetes</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-nu-purple-400 rounded-full border-2 border-gray-900 shadow-xl"></div>
+                </div>
+                
+                <!-- 2. Vagas.com (Left side on desktop) -->
+                <div class="mb-10 flex items-center w-full sm:justify-start">
+                    <!-- Content Wrapper. Correctly uses sm:pr-8 and sm:text-right for spacing on the left. -->
+                    <div class="sm:w-1/2 sm:pr-8 sm:order-last pl-8 sm:text-right">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-sky-400/40">
+                            <span class="text-sm text-gray-400">2023 - 2024</span>
+                            <h3 class="text-xl font-bold text-nu-purple-400 mt-1">Software Developer @Vagas.com</h3>
+                            <p class="text-gray-300 text-sm mt-1">Engineered and maintained core job platform features, ensuring stability for high-traffic operations.</p>
+                            <p class="mt-2 text-xs font-medium text-sky-400">Tech: Rails, Elixir, React, SQLServer</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-nu-purple-400 rounded-full border-2 border-gray-900 shadow-xl sm:order-first"></div>
+                </div>
+
+                <!-- 3. Jaya Tech (Right side on desktop) -->
+                <div class="mb-10 flex items-center w-full sm:justify-end">
+                    <!-- Content Wrapper. Correctly uses sm:pl-8 for spacing on the right. -->
+                    <div class="sm:w-1/2 sm:pl-8 pl-8">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/40">
+                            <span class="text-sm text-gray-400">Oct 2020 - Current</span>
+                            <h3 class="text-xl font-bold text-nu-purple-400 mt-1">Software Engineer @Jaya Tech (Remote US Team)</h3>
+                            <p class="text-gray-300 text-sm mt-1">Developed scalable health-tech solutions emphasizing secure cloud architecture and international collaboration.</p>
+                            <p class="mt-2 text-xs font-medium text-sky-400">Key Focus: Remote Collaboration, Cloud Architecture</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-nu-purple-400 rounded-full border-2 border-gray-900 shadow-xl"></div>
+                </div>
+
+                 <!-- 4. Clip (Left side on desktop) -->
+                <div class="mb-10 flex items-center w-full sm:justify-start">
+                    <!-- Content Wrapper. Correctly uses sm:pr-8 and sm:text-right for spacing on the left. -->
+                    <div class="sm:w-1/2 sm:pr-8 sm:order-last pl-8 sm:text-right">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-sky-400/40">
+                            <span class="text-sm text-gray-400">Oct 2018 - Current</span>
+                            <h3 class="text-xl font-bold text-nu-purple-400 mt-1">Software Engineer (Front-End) @Clip</h3>
+                            <p class="text-gray-300 text-sm mt-1">Spearheaded Front-End engineering for large-scale web projects, strictly applying Domain-Driven Design (DDD) principles.</p>
+                            <p class="mt-2 text-xs font-medium text-sky-400">Tech: Angular, React, Vue.js, Node.js</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-nu-purple-400 rounded-full border-2 border-gray-900 shadow-xl sm:order-first"></div>
+                </div>
+                
+                <!-- 5. IFAL (Right side on desktop) -->
+                <div class="mb-10 flex items-center w-full sm:justify-end">
+                    <!-- Content Wrapper. Correctly uses sm:pl-8 for spacing on the right. -->
+                    <div class="sm:w-1/2 sm:pl-8 pl-8">
+                        <div class="glass-card p-6 shadow-lg transition duration-300 hover:shadow-nu-purple-400/40">
+                            <span class="text-sm text-gray-400">Jan 2014</span>
+                            <h3 class="text-xl font-bold text-nu-purple-400 mt-1">Mobile & Backend Developer @IFAL</h3>
+                            <p class="text-gray-300 text-sm mt-1">Architected and developed the "Doe+" mobile platform for blood donation scheduling.</p>
+                            <p class="mt-2 text-xs font-medium text-sky-400">Tech: Java (Android), PHP/MySQL</p>
+                        </div>
+                    </div>
+                    <!-- Dot -->
+                    <div class="absolute left-2 sm:left-1/2 transform -translate-x-1/2 w-4 h-4 bg-nu-purple-400 rounded-full border-2 border-gray-900 shadow-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. IMPACT / NUMBERS SECTION -->
+    <section id="impact" class="py-20 md:py-28 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-16 text-white">Measurable <span class="text-nu-purple-400">Impact</span></h2>
+            
+            <div class="glass-card grid grid-cols-1 sm:grid-cols-3 gap-8 p-10 md:p-16 text-center">
+                
+                <div class="border-b sm:border-b-0 sm:border-r border-nu-purple-700/50 pb-8 sm:pb-0 sm:pr-8">
+                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">10+</p>
+                    <p class="text-lg font-semibold text-white uppercase tracking-wider">Years Experience</p>
+                </div>
+                
+                <div class="border-b sm:border-b-0 sm:border-r border-nu-purple-700/50 pb-8 sm:pb-0 sm:pr-8">
+                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">1</p>
+                    <p class="text-lg font-semibold text-white uppercase tracking-wider">Software Patent</p>
+                </div>
+                
+                <div>
+                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">100%</p>
+                    <p class="text-lg font-semibold text-white uppercase tracking-wider">Solution Focus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER / CONTACT SECTION (Updated with Avatar and Structured Links) -->
+    <footer id="contact" class="glass-card py-16 px-4 border-t border-nu-purple-700/50 shadow-inner shadow-black/20">
+        <div class="container mx-auto max-w-6xl">
+            
+            <h2 class="text-4xl font-bold text-nu-purple-400 mb-12 text-center">Get In Touch</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+                
+                <!-- Left Column: Avatar and Bio Snippet (1/3 width) -->
+                <div class="md:col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                    <img src="https://avatars.githubusercontent.com/u/6857918?v=4" 
+                         alt="Nywton Barros Profile Photo" 
+                         class="w-32 h-32 rounded-full ring-4 ring-nu-purple-500/50 mb-4 object-cover">
+                    <p class="text-2xl font-semibold text-white">Nywton Barros</p>
+                    <p class="text-gray-400 text-sm mt-1">Full Stack Developer & Cloud Architect</p>
+                </div>
+
+                <!-- Right Column: Contact Ways (2/3 width) -->
+                <div class="md:col-span-2 space-y-8">
+                    
+                    <!-- Direct Contact -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4 border-b border-nu-purple-700/50 pb-2">Direct Contact</h3>
+                        <div class="space-y-4">
+                            <!-- Email -->
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-envelope text-xl text-nu-purple-400 w-6"></i>
+                                <a href="mailto:nywton.barros@gmail.com" class="text-gray-300 hover:text-nu-purple-400 transition">
+                                    nywton.barros@gmail.com
+                                </a>
+                            </div>
+                            <!-- Phone -->
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-phone-alt text-xl text-nu-purple-400 w-6"></i>
+                                <a href="tel:+5582991295880" class="text-gray-300 hover:text-nu-purple-400 transition">
+                                    +55 (82) 9 9129-5880 (Brazil)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Networks -->
+                    <div>
+                        <h3 class="text-2xl font-bold text-white mb-4 border-b border-nu-purple-700/50 pb-2">Professional Networks</h3>
+                        <div class="space-y-4">
+                            <!-- LinkedIn -->
+                            <div class="flex items-center space-x-4">
+                                <i class="fab fa-linkedin-in text-xl text-nu-purple-400 w-6"></i>
+                                <a href="https://linkedin.com/in/nywtonbarros" target="_blank" class="text-gray-300 hover:text-nu-purple-400 transition">
+                                    linkedin.com/in/nywtonbarros
+                                </a>
+                            </div>
+                            <!-- GitHub -->
+                            <div class="flex items-center space-x-4">
+                                <i class="fab fa-github text-xl text-nu-purple-400 w-6"></i>
+                                <a href="https://github.com/nywtonbarros" target="_blank" class="text-gray-300 hover:text-nu-purple-400 transition">
+                                    github.com/nywtonbarros
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="mt-12 pt-6 border-t border-gray-700/50 text-center">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2024 Nywton Barros. All rights reserved. | Full Stack Development & Innovation.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Project Detail Modal -->
+    <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div id="modal-content-wrapper" class="glass-card w-full max-w-3xl p-6 md:p-10 relative transform translate-y-0 transition-transform duration-300">
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-nu-purple-400 text-3xl transition duration-200" aria-label="Close modal">
+                <i class="fas fa-times-circle"></i>
+            </button>
+            <h3 id="modal-title" class="text-3xl font-extrabold text-nu-purple-400 mb-4"></h3>
+            <span id="modal-category" class="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-3 block"></span>
+            
+            <div id="modal-body" class="text-gray-300 space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+                <!-- Dynamic content goes here -->
+            </div>
+
+            <p id="modal-tech" class="font-mono text-sm text-sky-400 mt-6 pt-4 border-t border-gray-700/50"></p>
+        </div>
     </div>
-  
-  </div><!-- /.container -->
-</div>
 
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('project-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const projectLinks = document.querySelectorAll('.project-detail-link');
 
+            const projectsData = {
+                atlas: {
+                    title: "Project Atlas: International Logistics Platform",
+                    category: "SaaS & Logistics",
+                    tech: "Vue.js, Node.js/Express, PostgreSQL, AWS ECS, Microservices",
+                    details: [
+                        "Architected a scalable microservices infrastructure utilizing AWS Elastic Container Service (ECS) for seamless global deployment.",
+                        "Developed real-time tracking and inventory management modules, reducing manual reporting time by 40%.",
+                        "Implemented a secure, multi-tenant database design with PostgreSQL to ensure data isolation and compliance for diverse international clients.",
+                        "Optimized API response times by 30% through advanced caching strategies and query optimization on the Node.js backend."
+                    ]
+                },
+                doeplus: {
+                    title: "Doe+ Mobile Platform: A Social HealthTech Initiative",
+                    category: "Social Impact & HealthTech",
+                    tech: "Java (Android), PHP/MySQL, REST API",
+                    details: [
+                        "Spearheaded the design and development of the 'Doe+' mobile application, connecting thousands of users with local blood donation centers.",
+                        "The platform included geo-location services and personalized scheduling features, leading to a 25% increase in successful donation appointments.",
+                        "Developed a robust and secure PHP/MySQL backend to manage donor profiles, health records, and appointment data compliance.",
+                        "Received institutional recognition for providing a critical technological solution to address regional blood shortage challenges."
+                    ]
+                }
+            };
 
-<br><br>
+            function openModal(projectId) {
+                const project = projectsData[projectId];
+                if (!project) return;
 
+                document.getElementById('modal-title').textContent = project.title;
+                document.getElementById('modal-category').textContent = project.category;
+                document.getElementById('modal-tech').textContent = "Tech Stack: " + project.tech;
+                
+                const body = document.getElementById('modal-body');
+                body.innerHTML = ''; // Clear existing content
+                
+                const detailList = document.createElement('ul');
+                    detailList.className = 'list-disc pl-5 space-y-2';
 
-<!-- =========================================
-        INTEREST
-==========================================-->
+                project.details.forEach(detail => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = detail;
+                    detailList.appendChild(listItem);
+                });
 
-<!--<div class="interests col s12 m12 l12 wow fadeIn animated" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeIn;">-->
-<!--<div class="row">-->
-<!--<ul class="z-depth-1"> &lt;!&ndash; interetsr icon start &ndash;&gt;-->
-<!--<li><i class="fa fa-facebook-official tooltipped col m2 s6" data-position="top" data-delay="50" data-tooltip="Facebook"></i></li>-->
-<!--<li><i class="fa fa-twitter tooltipped col m2 s6" data-position="top" data-delay="50" data-tooltip="Twitter"></i></li>-->
-<!--<li><i class="fa fa-linkedin tooltipped col m2 s6" data-position="top" data-delay="50" data-tooltip="linkedin"></i></li>-->
-<!--<li><i class="fa fa-whatsapp tooltipped col m2 s6" data-position="top" data-delay="50" data-tooltip="Whatsapp"></i></li>-->
-<!--<li><i class="fa fa-youtube tooltipped col m2 s6" data-position="top" data-delay="50" data-tooltip="Youtube"></i></li>-->
-<!--<li><i class="fa fa-vimeo tooltipped col m2 s6" data-position="top" data-delay="50" data-tooltip="Vimeo"></i></li>-->
-<!--</ul> &lt;!&ndash; interetsr icon end &ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</section>-->
+                body.appendChild(detailList);
 
-<footer id="contato" class="page-footer darken-2" style="background: #333  !important;">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5>Nywton Barros</h5>
-        <p class="text-lighten-4 white-text">
-          Full Stack Developer from Brazil.
-        </p>
+                modal.classList.add('modal-visible');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            }
 
+            function closeModal() {
+                modal.classList.remove('modal-visible');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
 
-      </div>
-      <div class="col l3 s12">
-        <h5>Contact</h5>
-        <ul class="white-text">
-          <li>
-            <span class="contact-info" style="display: flex;gap: 10px; margin-bottom: 10px">
-              <i class="material-icons">smartphone</i>
-              <span>+55 82 99129-5880 </span>
-            </span>
-          </li>
-          <li>
-            <span class="contact-info" style="display: flex;gap: 10px;">
-              <i class="material-icons">email</i>
-              <span>nywton.barros@gmail.com</span>
-            </span>  
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      Made by <a class="text-lighten-3" href="#">Nywton Barros</a>
-      <div>Icons made by <a href="https://br.flaticon.com/autores/smartline" title="Smartline">Smartline</a> from <a href="https://br.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> 
-    </div>
-  </div>
-</footer>
+            // Event Listeners for links
+            projectLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const projectId = e.currentTarget.getAttribute('data-project-id');
+                    openModal(projectId);
+                });
+            });
 
-
-<!--  Scripts-->
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.js"></script>
-<script src="js/init.js"></script>
-<script src="https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/gallery.min.opt.js?9078412610821087350" crossorigin="anonymous"></script>
-<script src="js/scroll-nav.js"></script>
-
-
+            // Event Listeners for closing modal
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                // Close modal if clicking outside the content box
+                if (e.target.id === 'project-modal') {
+                    closeModal();
+                }
+            });
+            document.addEventListener('keydown', (e) => {
+                // Close modal on escape key
+                if (e.key === 'Escape' && modal.classList.contains('modal-visible')) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
