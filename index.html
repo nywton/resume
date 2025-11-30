@@ -131,7 +131,8 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-bold text-center mb-16 text-white">Core <span class="text-nu-purple-400">Competencies</span></h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Updated grid layout to accommodate 4 items gracefully -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 
                 <!-- Tile 1: Full Stack -->
                 <div class="tile glass-card p-8 text-center transition duration-300 hover:shadow-nu-purple-500/30 hover:-translate-y-1">
@@ -153,6 +154,13 @@
                     <h3 class="text-2xl font-semibold text-white mb-3">Mobile & R&D</h3>
                     <p class="text-gray-400">Developing cross-platform mobile apps (React Native) and driving innovation through scientific research and patents.</p>
                 </div>
+
+                <!-- NEW Tile 4: AI/LLM Mastery -->
+                <div class="tile glass-card p-8 text-center transition duration-300 hover:shadow-nu-purple-500/30 hover:-translate-y-1">
+                    <div class="icon text-nu-purple-400 text-5xl mb-4"><i class="fa-solid fa-brain"></i></div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">AI/LLM Mastery</h3>
+                    <p class="text-gray-400">Designing and integrating custom LLM solutions using tools and Retrieval-Augmented Generation (RAG) on proprietary company data.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -162,23 +170,23 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-bold text-center mb-16 text-white">Selected <span class="text-nu-purple-400">Projects</span></h2>
 
-            <!-- Project Card 1: Project Atlas (Text Left, Image Right) -->
+            <!-- Project Card 1: Project Vetias (Text Left, Image Right) -->
             <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 mb-16 items-center transition duration-300 hover:shadow-sky-500/30">
                 <!-- Content -->
                 <div>
-                    <span class="text-sm font-semibold text-nu-purple-400 uppercase tracking-widest">SaaS & Logistics</span>
-                    <h3 class="text-3xl font-bold text-white mt-2 mb-4">Project Atlas</h3>
+                    <span class="text-sm font-semibold text-nu-purple-400 uppercase tracking-widest">HealthTech & Telemedicine</span>
+                    <h3 class="text-3xl font-bold text-white mt-2 mb-4">Project Vetias</h3>
                     <p class="text-gray-400 mb-6">
-                        Designed and implemented a highly scalable SaaS platform for international supply chain management. Atlas handles critical real-time logistics data, ensuring global operational efficiency.
+                        Developed Vetias, a specialized telemedicine platform for veterinarians. This SaaS tool enables remote case consultations, significantly improving clinical efficiency and successfully managing over 11,000 veterinary support tickets.
                     </p>
-                    <p class="font-mono text-sm text-sky-400 mb-6">Tech Stack: Vue.js, Node.js/Express, PostgreSQL</p>
-                    <a href="#" data-project-id="atlas" class="project-detail-link text-nu-purple-400 hover:text-nu-purple-300 font-semibold transition duration-200">
-                        View Case Study <i class="fas fa-arrow-right ml-2"></i>
+                    <p class="font-mono text-sm text-sky-400 mb-6">Tech Stack: Vue.js, Node.js, PostgreSQL, Socket.io</p>
+                    <a href="#" data-project-id="vetias" class="project-detail-link text-nu-purple-400 hover:text-nu-purple-300 font-semibold transition duration-200">
+                        View Telemedicine Impact <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
                 <!-- Image -->
                 <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80">
-                    <img src="https://placehold.co/800x600/101010/820ad1?text=Project+Atlas+UI" alt="Dark modern dashboard interface for logistics" class="w-full h-full object-cover">
+                    <img src="https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true" alt="Vetias Telemedicine App Dashboard" class="w-full h-full object-cover">
                 </div>
             </div>
 
@@ -416,21 +424,23 @@
             const projectLinks = document.querySelectorAll('.project-detail-link');
 
             const projectsData = {
-                atlas: {
-                    title: "Project Atlas: International Logistics Platform",
-                    category: "SaaS & Logistics",
-                    tech: "Vue.js, Node.js/Express, PostgreSQL, AWS ECS, Microservices",
+                // Project Vetias Data
+                vetias: {
+                    title: "Project Vetias: Telemedicine for Veterinarians",
+                    category: "HealthTech & Telemedicine",
+                    tech: "Vue.js, Node.js, PostgreSQL, Socket.io (for real-time chat)",
                     details: [
-                        "Architected a scalable microservices infrastructure utilizing AWS Elastic Container Service (ECS) for seamless global deployment.",
-                        "Developed real-time tracking and inventory management modules, reducing manual reporting time by 40%.",
-                        "Implemented a secure, multi-tenant database design with PostgreSQL to ensure data isolation and compliance for diverse international clients.",
-                        "Optimized API response times by 30% through advanced caching strategies and query optimization on the Node.js backend."
+                        "Led the development of a specialized SaaS platform to facilitate remote veterinary case consultations between clinics and specialists.",
+                        "Processed and managed over 11,000 resolved support tickets and patient cases, demonstrating high reliability and volume handling.",
+                        "Implemented real-time communication tools (chat and video conferencing) using Socket.io to enable immediate specialist feedback.",
+                        "Designed the system for secure data handling of animal health records and clinic billing information, ensuring privacy and reliability."
                     ]
                 },
+                // Project Doe+ Data
                 doeplus: {
                     title: "Doe+ Mobile Platform: A Social HealthTech Initiative",
                     category: "Social Impact & HealthTech",
-                    tech: "Java (Android), PHP/MySQL, REST API",
+                    tech: "Java (Android), PHP/MySQL",
                     details: [
                         "Spearheaded the design and development of the 'Doe+' mobile application, connecting thousands of users with local blood donation centers.",
                         "The platform included geo-location services and personalized scheduling features, leading to a 25% increase in successful donation appointments.",
