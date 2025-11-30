@@ -57,7 +57,7 @@
 
         /* Hero Glitch/Focus Animation - Updated for Purple Glow */
         .hero-title {
-            animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+            animation: text-focus-in 1.5s cubic-bezier(0.550, 0.085, 0.680, 0.530, 0.530) both;
             text-shadow: 0 0 10px rgba(130, 10, 209, 0.5); /* NuPurple Glow (RGB from #820ad1) */
         }
         @keyframes text-focus-in {
@@ -104,15 +104,11 @@
             </a>
             
             <!-- Desktop Nav Links - Only Projects and Contact remain, with vertical alignment fixed -->
-            <nav class="hidden md:flex space-x-6 text-base font-medium items-center">
+            <!-- Note: On mobile, these links will stack or wrap due to flex/space-x but that's acceptable for a minimalist resume -->
+            <nav class="flex space-x-6 text-base font-medium items-center">
                 <a href="#projects" class="hover:text-nu-purple-400 transition duration-200">Projects</a>
                 <a href="#contact" class="px-4 py-2 border border-nu-purple-500 rounded-lg hover:bg-nu-purple-500/20 transition duration-200">Contact</a>
             </nav>
-
-            <!-- Mobile Menu (omitted for brevity, assume simple link behavior) -->
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-700/50 transition duration-300">
-                <i class="fas fa-bars w-5 h-5 text-gray-100"></i>
-            </button>
         </div>
     </header>
 
@@ -497,7 +493,7 @@
                         "https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png?raw=true" 
                     ]
                 },
-                // Project Doe+ Data
+                // Project Doe+ Data - UPDATED IMAGES HERE
                 doeplus: {
                     title: "Doe+ Mobile Platform: A Social HealthTech Initiative",
                     category: "Social Impact & HealthTech",
@@ -508,11 +504,10 @@
                         "Developed a robust and secure PHP/MySQL backend to manage donor profiles, health records, and appointment data compliance.",
                         "Received institutional recognition for providing a critical technological solution to address regional blood shortage challenges."
                     ],
-                    // Added gallery with placeholder images
                     gallery: [
-                        "https://placehold.co/400x300/292524/fda4af?text=Doe+Mobile+Home", // Dark background, light red/pink text
-                        "https://placehold.co/400x300/292524/fda4af?text=Donor+Schedule+Screen",
-                        "https://placehold.co/400x300/292524/fda4af?text=Geo-Location+Map"
+                        "https://github.com/nywton/resume/blob/master/img/doe-2.jpg?raw=true", // New URL 1
+                        "https://github.com/nywton/resume/blob/master/img/doe-3.jpg?raw=true", // New URL 2
+                        "https://github.com/nywton/resume/blob/master/img/doe-1.jpg?raw=true"  // New URL 3
                     ]
                 }
             };
