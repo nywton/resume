@@ -90,6 +90,10 @@
         #modal-body::-webkit-scrollbar-track {
             background: #1f2937; /* Dark Gray */
         }
+        /* Styles to make the number animation smoother */
+        .impact-number {
+            transition: all 0.1s ease-out; /* Add transition for smoothness */
+        }
     </style>
 </head>
 <body class="text-gray-100 antialiased">
@@ -310,25 +314,37 @@
         </div>
     </section>
 
-    <!-- 5. IMPACT / NUMBERS SECTION -->
+    <!-- 5. IMPACT / NUMBERS SECTION (Updated for Rolling Animation) -->
     <section id="impact" class="py-20 md:py-28 px-4 md:px-8">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-bold text-center mb-16 text-white">Measurable <span class="text-nu-purple-400">Impact</span></h2>
             
             <div class="glass-card grid grid-cols-1 sm:grid-cols-3 gap-8 p-10 md:p-16 text-center">
                 
+                <!-- Impact Item 1: Years Experience -->
                 <div class="border-b sm:border-b-0 sm:border-r border-nu-purple-700/50 pb-8 sm:pb-0 sm:pr-8">
-                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">10+</p>
+                    <!-- Data attributes hold the target number and suffix -->
+                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">
+                        <span id="stat-years" class="impact-number" data-target="10" data-suffix="+">0</span>
+                        <span class="text-7xl font-extrabold text-nu-purple-400">+</span>
+                    </p>
                     <p class="text-lg font-semibold text-white uppercase tracking-wider">Years Experience</p>
                 </div>
                 
+                <!-- Impact Item 2: Software Patent -->
                 <div class="border-b sm:border-b-0 sm:border-r border-nu-purple-700/50 pb-8 sm:pb-0 sm:pr-8">
-                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">1</p>
+                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">
+                        <span id="stat-patent" class="impact-number" data-target="2" data-suffix="">0</span>
+                    </p>
                     <p class="text-lg font-semibold text-white uppercase tracking-wider">Software Patent</p>
                 </div>
                 
+                <!-- Impact Item 3: Solution Focus -->
                 <div>
-                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">100%</p>
+                    <p class="text-7xl md:text-8xl font-extrabold text-nu-purple-400 mb-2">
+                        <span id="stat-focus" class="impact-number" data-target="100" data-suffix="%">0</span>
+                        <span class="text-7xl font-extrabold text-nu-purple-400">%</span>
+                    </p>
                     <p class="text-lg font-semibold text-white uppercase tracking-wider">Solution Focus</p>
                 </div>
             </div>
@@ -451,7 +467,7 @@
                 <i class="fas fa-times-circle"></i>
             </button>
 
-            <!-- Navigation Buttons (NEW) -->
+            <!-- Navigation Buttons -->
             <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl md:text-5xl opacity-70 hover:opacity-100 transition duration-200 z-[120] p-3 md:p-4 bg-black/50 rounded-full" aria-label="Previous Image">
                 <i class="fas fa-chevron-left"></i>
             </button>
@@ -468,14 +484,13 @@
     </div>
 
 
-    <!-- JavaScript for Modal Functionality -->
+    <!-- JavaScript for Modal and Animation Functionality -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Main Modal Elements
             const modal = document.getElementById('project-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const projectLinks = document.querySelectorAll('.project-detail-link');
-            // NEW: Select all main project images that act as triggers
             const projectImageTriggers = document.querySelectorAll('.project-image-trigger'); 
 
             // Image Viewer Elements 
@@ -501,7 +516,6 @@
                         "Implemented real-time communication tools (chat and video conferencing) using Socket.io to enable immediate specialist feedback.",
                         "Designed the system for secure data handling of animal health records and clinic billing information, ensuring privacy and reliability."
                     ],
-                    // Updated gallery with provided URLs
                     gallery: [
                         "https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png?raw=true", 
                         "https://github.com/nywton/resume/blob/master/img/vetias-chat.png?raw=true",
@@ -652,8 +666,83 @@
                 // Ensure the image viewer is also closed if it was open
                 closeImageViewer(); 
             }
+            
+            // --- NUMBER ANIMATION LOGIC (NEW) ---
 
-            // --- EVENT LISTENERS ---
+            const impactSection = document.getElementById('impact');
+            const statElements = document.querySelectorAll('.impact-number');
+            let animationTriggered = false;
+
+            /**
+             * Counts up the number inside the given element.
+             * @param {HTMLElement} element - The span element to update.
+             */
+            function countUp(element) {
+                const target = parseInt(element.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                let start = 0;
+                let startTime = null;
+
+                const step = (timestamp) => {
+                    if (!startTime) startTime = timestamp;
+                    const progress = timestamp - startTime;
+                    const fraction = Math.min(progress / duration, 1);
+                    const current = Math.floor(fraction * target);
+                    
+                    // Update the text content
+                    element.textContent = current;
+
+                    // If not finished, continue the animation
+                    if (fraction < 1) {
+                        window.requestAnimationFrame(step);
+                    } else {
+                        // Ensure it hits the final target value
+                        element.textContent = target; 
+                    }
+                };
+
+                window.requestAnimationFrame(step);
+            }
+            
+            /**
+             * Resets and runs the countUp animation for all stats.
+             */
+            function startStatsAnimation() {
+                 if (animationTriggered) return;
+
+                 statElements.forEach(element => {
+                    // Reset to 0 before starting the count
+                    element.textContent = '0'; 
+                    
+                    // Note: The '+' and '%' suffixes are handled in the HTML structure
+                    // The countUp function only handles the numerical part.
+                    countUp(element);
+                 });
+
+                 animationTriggered = true;
+            }
+
+            // Intersection Observer Setup
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !animationTriggered) {
+                            startStatsAnimation();
+                            // Stop observing once the animation has been triggered
+                            observer.unobserve(entry.target); 
+                        }
+                    });
+                }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+                observer.observe(impactSection);
+
+            } else {
+                // Fallback for browsers that do not support Intersection Observer
+                startStatsAnimation();
+            }
+
+
+            // --- EVENT LISTENERS (UNCHANGED) ---
 
             // 1. Project Detail Links (Text)
             projectLinks.forEach(link => {
@@ -664,7 +753,7 @@
                 });
             });
 
-            // 2. Project Main Image Triggers (NEW)
+            // 2. Project Main Image Triggers
             projectImageTriggers.forEach(trigger => {
                 trigger.addEventListener('click', (e) => {
                     const projectId = e.currentTarget.getAttribute('data-project-id');
@@ -680,7 +769,7 @@
             closeModalBtn.addEventListener('click', closeModal);
             closeViewerBtn.addEventListener('click', closeImageViewer);
 
-            // 4. Gallery Navigation (NEW)
+            // 4. Gallery Navigation
             prevBtn.addEventListener('click', prevImage);
             nextBtn.addEventListener('click', nextImage);
 
