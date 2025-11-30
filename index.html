@@ -104,7 +104,6 @@
             </a>
             
             <!-- Desktop Nav Links - Only Projects and Contact remain, with vertical alignment fixed -->
-            <!-- Note: On mobile, these links will stack or wrap due to flex/space-x but that's acceptable for a minimalist resume -->
             <nav class="flex space-x-6 text-base font-medium items-center">
                 <a href="#projects" class="hover:text-nu-purple-400 transition duration-200">Projects</a>
                 <a href="#contact" class="px-4 py-2 border border-nu-purple-500 rounded-lg hover:bg-nu-purple-500/20 transition duration-200">Contact</a>
@@ -194,17 +193,17 @@
                         View Telemedicine Impact <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
-                <!-- Image -->
-                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80">
-                    <img src="https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true" alt="Vetias Telemedicine App Dashboard" class="w-full h-full object-cover">
+                <!-- Image - Now a clickable trigger for the gallery -->
+                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 cursor-pointer project-image-trigger" data-project-id="vetias">
+                    <img src="https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true" alt="Vetias Telemedicine App Dashboard" class="w-full h-full object-cover transition duration-300 hover:scale-[1.05]">
                 </div>
             </div>
 
             <!-- Project Card 2: Doe+ (Image Left, Text Right) -->
             <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center transition duration-300 hover:shadow-nu-purple-500/30">
-                 <!-- Image -->
-                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 lg:order-last">
-                    <img src="https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true" alt="Doe+ Mobile App Screenshot" class="w-full h-full object-cover">
+                 <!-- Image - Now a clickable trigger for the gallery -->
+                <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 lg:order-last cursor-pointer project-image-trigger" data-project-id="doeplus">
+                    <img src="https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true" alt="Doe+ Mobile App Screenshot" class="w-full h-full object-cover transition duration-300 hover:scale-[1.05]">
                 </div>
                 <!-- Content -->
                 <div class="lg:order-first">
@@ -409,7 +408,7 @@
         </div>
     </footer>
 
-    <!-- Project Detail Modal -->
+    <!-- Project Detail Modal (The one with text and small images) -->
     <div id="project-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div id="modal-content-wrapper" class="glass-card w-full max-w-4xl p-6 md:p-10 relative transform translate-y-0 transition-transform duration-300 border-2 border-nu-purple-600/50 max-h-[90vh]">
             <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-nu-purple-400 text-3xl transition duration-200" aria-label="Close modal">
@@ -422,7 +421,7 @@
                 <h3 id="modal-title" class="text-3xl font-extrabold text-nu-purple-400"></h3>
                 <span id="modal-category" class="text-sm font-semibold text-gray-400 uppercase tracking-widest block"></span>
 
-                <!-- Image Gallery Section -->
+                <!-- Image Gallery Section (The small images inside the text modal) -->
                 <div>
                     <h4 class="text-xl font-bold text-white mb-4 border-b border-gray-700/50 pb-2">Screenshots & UI</h4>
                     <div id="modal-gallery" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -443,14 +442,24 @@
         </div>
     </div>
 
-    <!-- Image Viewer Modal (NEW FEATURE) -->
-    <div id="image-viewer-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 bg-black/95 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
+    <!-- Image Viewer Modal (The full-screen slideshow/gallery) -->
+    <div id="image-viewer-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 bg-black/95 backdrop-blur-sm transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
         <div class="relative w-full h-full flex items-center justify-center">
             
             <!-- Close Button -->
             <button id="close-viewer-btn" class="absolute top-4 right-4 text-white hover:text-nu-purple-400 text-4xl transition duration-200 z-[120]" aria-label="Close image viewer">
                 <i class="fas fa-times-circle"></i>
             </button>
+
+            <!-- Navigation Buttons (NEW) -->
+            <button id="prev-btn" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl md:text-5xl opacity-70 hover:opacity-100 transition duration-200 z-[120] p-3 md:p-4 bg-black/50 rounded-full" aria-label="Previous Image">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <button id="next-btn" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl md:text-5xl opacity-70 hover:opacity-100 transition duration-200 z-[120] p-3 md:p-4 bg-black/50 rounded-full" aria-label="Next Image">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
 
             <!-- Image Container - Max width/height of viewport, maintaining aspect ratio -->
             <img id="viewer-image" src="" alt="Project Screenshot View" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transition duration-300 transform scale-95 md:scale-100">
@@ -466,12 +475,19 @@
             const modal = document.getElementById('project-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const projectLinks = document.querySelectorAll('.project-detail-link');
+            // NEW: Select all main project images that act as triggers
+            const projectImageTriggers = document.querySelectorAll('.project-image-trigger'); 
 
-            // Image Viewer Elements (NEW)
+            // Image Viewer Elements 
             const imageViewerModal = document.getElementById('image-viewer-modal');
             const closeViewerBtn = document.getElementById('close-viewer-btn');
             const viewerImage = document.getElementById('viewer-image');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
 
+            // NEW State for the Gallery Viewer
+            let currentGallery = [];
+            let currentImageIndex = 0;
 
             const projectsData = {
                 // Project Vetias Data
@@ -489,8 +505,7 @@
                     gallery: [
                         "https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png?raw=true", 
                         "https://github.com/nywton/resume/blob/master/img/vetias-chat.png?raw=true",
-                        // Using the dashboard image again to keep the 3-column grid consistent
-                        "https://github.com/nywton/resume/blob/master/img/vetias-dashboard.png?raw=true" 
+                        "https://github.com/nywton/resume/blob/master/img/vetias.png?raw=true" 
                     ]
                 },
                 // Project Doe+ Data - UPDATED IMAGES HERE
@@ -512,23 +527,69 @@
                 }
             };
 
+
+            // --- GALLERY VIEWER FUNCTIONS ---
+
             /**
-             * Handles opening the secondary image viewer modal.
-             * @param {string} imageUrl The URL of the image to display.
+             * Updates the image source and the state of navigation buttons.
              */
-            function openImageViewer(imageUrl) {
-                viewerImage.src = imageUrl;
-                imageViewerModal.classList.add('modal-visible');
-                // Note: We don't disable body scroll here because it was already disabled by the main modal
+            function updateViewer() {
+                if (currentGallery.length === 0) {
+                    closeImageViewer();
+                    return;
+                }
+
+                const currentUrl = currentGallery[currentImageIndex];
+                viewerImage.src = currentUrl;
+                
+                // Update navigation button visibility/disabled state
+                prevBtn.classList.toggle('hidden', currentImageIndex === 0);
+                nextBtn.classList.toggle('hidden', currentImageIndex === currentGallery.length - 1);
             }
 
             /**
-             * Handles closing the secondary image viewer modal.
+             * Opens the secondary image viewer modal with a full gallery.
+             * @param {string[]} galleryArray - The array of image URLs for the current project.
+             * @param {number} startIndex - The index of the image to display first.
              */
+            function openImageViewer(galleryArray, startIndex = 0) {
+                if (!galleryArray || galleryArray.length === 0) return;
+
+                currentGallery = galleryArray;
+                currentImageIndex = startIndex;
+                
+                imageViewerModal.classList.add('modal-visible');
+                document.body.style.overflow = 'hidden'; // Lock background scroll
+
+                updateViewer();
+            }
+
             function closeImageViewer() {
                 imageViewerModal.classList.remove('modal-visible');
-                viewerImage.src = ""; // Clear source
+                // Only restore body scroll if the main detail modal is not open
+                if (!modal.classList.contains('modal-visible')) {
+                    document.body.style.overflow = ''; 
+                }
+                currentGallery = [];
+                currentImageIndex = 0;
             }
+
+            // Navigation functions
+            function nextImage() {
+                if (currentImageIndex < currentGallery.length - 1) {
+                    currentImageIndex++;
+                    updateViewer();
+                }
+            }
+
+            function prevImage() {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    updateViewer();
+                }
+            }
+
+            // --- MAIN DETAIL MODAL FUNCTIONS ---
 
             function openModal(projectId) {
                 const project = projectsData[projectId];
@@ -557,7 +618,7 @@
                 const galleryContainer = document.getElementById('modal-gallery');
                 galleryContainer.innerHTML = ''; // Clear existing images
                 
-                project.gallery.forEach(url => {
+                project.gallery.forEach((url, index) => {
                     const imgWrapper = document.createElement('div');
                     imgWrapper.className = 'h-52 sm:h-52 rounded-lg overflow-hidden border border-gray-700 transition duration-300 hover:shadow-xl hover:shadow-nu-purple-500/30 cursor-pointer';
                     
@@ -570,8 +631,8 @@
                         this.alt = "Placeholder: Image unavailable";
                     };
                     
-                    // Attach click handler to open the image viewer (NEW)
-                    img.addEventListener('click', () => openImageViewer(url));
+                    // Attach click handler to open the image viewer, passing the full gallery and index
+                    img.addEventListener('click', () => openImageViewer(project.gallery, index));
 
                     imgWrapper.appendChild(img);
                     galleryContainer.appendChild(imgWrapper);
@@ -584,12 +645,17 @@
 
             function closeModal() {
                 modal.classList.remove('modal-visible');
-                document.body.style.overflow = ''; // Restore scrolling
+                // Only restore body scroll if the image viewer is not open
+                if (!imageViewerModal.classList.contains('modal-visible')) {
+                    document.body.style.overflow = '';
+                }
                 // Ensure the image viewer is also closed if it was open
                 closeImageViewer(); 
             }
 
-            // Event Listeners for project links
+            // --- EVENT LISTENERS ---
+
+            // 1. Project Detail Links (Text)
             projectLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -598,31 +664,56 @@
                 });
             });
 
-            // Event Listeners for closing the main modal
+            // 2. Project Main Image Triggers (NEW)
+            projectImageTriggers.forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    const projectId = e.currentTarget.getAttribute('data-project-id');
+                    const project = projectsData[projectId];
+                    if (project && project.gallery.length > 0) {
+                        // Open the gallery starting at index 0
+                        openImageViewer(project.gallery, 0);
+                    }
+                });
+            });
+
+            // 3. Close Modal/Viewer Buttons
             closeModalBtn.addEventListener('click', closeModal);
+            closeViewerBtn.addEventListener('click', closeImageViewer);
+
+            // 4. Gallery Navigation (NEW)
+            prevBtn.addEventListener('click', prevImage);
+            nextBtn.addEventListener('click', nextImage);
+
+
+            // 5. Click outside listeners
             modal.addEventListener('click', (e) => {
-                // Close modal if clicking outside the content box
                 if (e.target.id === 'project-modal') {
                     closeModal();
                 }
             });
 
-            // Event Listeners for closing the image viewer modal (NEW)
-            closeViewerBtn.addEventListener('click', closeImageViewer);
             imageViewerModal.addEventListener('click', (e) => {
-                // Close viewer modal if clicking on the background (but not the image itself)
+                // Check if the click target is the background of the viewer, not the image or buttons
                 if (e.target.id === 'image-viewer-modal') {
                     closeImageViewer();
                 }
             });
             
-            // Global Escape key listener (handles both modals)
+            // 6. Global Escape key listener (handles both modals)
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     if (imageViewerModal.classList.contains('modal-visible')) {
                         closeImageViewer(); // Close image viewer first
                     } else if (modal.classList.contains('modal-visible')) {
                         closeModal(); // Then close main modal
+                    }
+                }
+                // Also enable arrow key navigation in the viewer
+                if (imageViewerModal.classList.contains('modal-visible')) {
+                     if (e.key === 'ArrowRight') {
+                        nextImage();
+                    } else if (e.key === 'ArrowLeft') {
+                        prevImage();
                     }
                 }
             });
