@@ -200,35 +200,49 @@
         <!-- Background Decor (Glow) -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-nu-purple-900/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <!-- 10+ Years Tag -->
-            <div class="hero-animate delay-100 mb-4 flex justify-center">
-                <span class="px-4 py-1 rounded-full bg-gray-800/80 border border-gray-700 text-xs md:text-sm font-semibold text-gray-300 uppercase tracking-widest shadow-lg">
-                    10+ Years Experience
-                </span>
+        <div class="max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <!-- Hero Image - Mobile: First (top), Desktop: Second (right) -->
+            <div class="hero-animate delay-100 flex justify-center md:order-2">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-nu-purple-500/50 shadow-lg shadow-nu-purple-600/30">
+                        <img src="img/hero.gif" alt="Tech animation - Software Development" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Glow effect behind image -->
+                    <div class="absolute inset-0 -z-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full bg-nu-purple-600/20 blur-xl"></div>
+                </div>
             </div>
 
-            <!-- Subtitle -->
-            <p class="hero-animate delay-200 text-xl md:text-2xl font-bold text-nu-purple-400 mb-4 tracking-widest uppercase opacity-90">
-                Full Stack & Cloud Engineering
-            </p>
-            
-            <!-- Main Title -->
-            <h1 class="hero-animate delay-300 text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 tracking-tight leading-tight">
-                Nywton Barros
-            </h1>
-            
-            <!-- The Impact Sentence -->
-            <h2 class="hero-animate delay-500 text-2xl md:text-4xl font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                "Crafting elegant software experiences that <span class="font-semibold text-nu-purple-300 border-b-2 border-nu-purple-500/50 pb-1">make life easier.</span>"
-            </h2>
+            <!-- Text Content - Mobile: Second (bottom), Desktop: First (left) -->
+            <div class="text-center md:text-left md:order-1">
+                <!-- 10+ Years Tag -->
+                <div class="hero-animate delay-100 mb-4 flex justify-center md:justify-start">
+                    <span class="px-4 py-1 rounded-full bg-gray-800/80 border border-gray-700 text-xs md:text-sm font-semibold text-gray-300 uppercase tracking-widest shadow-lg">
+                        10+ Years Experience
+                    </span>
+                </div>
 
-            <!-- CTA Button -->
-            <div class="hero-animate delay-700 mt-12">
-                <a href="#contact" class="group inline-flex items-center px-10 py-4 text-lg font-bold bg-nu-purple-600 text-white rounded-xl shadow-lg shadow-nu-purple-600/30 hover:bg-nu-purple-500 transition-all duration-300 transform hover:-translate-y-1">
-                    Start a Conversation 
-                    <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
-                </a>
+                <!-- Subtitle -->
+                <p class="hero-animate delay-200 text-xl md:text-2xl font-bold text-nu-purple-400 mb-4 tracking-widest uppercase opacity-90">
+                    Full Stack & Cloud Engineering
+                </p>
+                
+                <!-- Main Title -->
+                <h1 class="hero-animate delay-300 text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 tracking-tight leading-tight">
+                    Nywton Barros
+                </h1>
+                
+                <!-- The Impact Sentence -->
+                <h2 class="hero-animate delay-500 text-2xl md:text-3xl lg:text-4xl font-light text-gray-300 max-w-4xl leading-relaxed">
+                    "Crafting elegant software experiences that <span class="font-semibold text-nu-purple-300 border-b-2 border-nu-purple-500/50 pb-1">make life easier.</span>"
+                </h2>
+
+                <!-- CTA Button -->
+                <div class="hero-animate delay-700 mt-12 flex justify-center md:justify-start">
+                    <a href="#contact" class="group inline-flex items-center px-10 py-4 text-lg font-bold bg-nu-purple-600 text-white rounded-xl shadow-lg shadow-nu-purple-600/30 hover:bg-nu-purple-500 transition-all duration-300 transform hover:-translate-y-1">
+                        Start a Conversation 
+                        <i class="fas fa-arrow-right ml-3 transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>

@@ -141,28 +141,47 @@
 
     <!-- 1. HERO SECTION (Title + One Sentence Impact) -->
     <section id="hero" class="relative overflow-hidden pt-16 pb-40 px-4 md:px-8 flex items-center justify-center min-h-[80vh]">    
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-            <!-- NEW: 10+ Years Experience Text -->
-            <p class="text-lg md:text-xl font-semibold text-gray-500 mb-2 tracking-wide uppercase">
-                10+ Years Experience
-            </p>
-            <!-- Original Text -->
-            <p class="text-xl md:text-2xl font-bold text-nu-purple-400 mb-4 tracking-widest uppercase opacity-75">
-                Full Stack & Cloud Engineering
-            </p>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-gray-50 mb-8 hero-title">
-                Nywton Barros
-            </h1>
-            
-            <!-- The One Sentence Impact -->
-            <h2 class="text-3xl md:text-4xl font-light text-gray-300 max-w-4xl mx-auto leading-relaxed">
-                "Crafting elegant software experiences that <span class="font-semibold text-nu-purple-300">make life easier.</span>"
-            </h2>
+        <!-- Background Decor (Glow) -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-nu-purple-900/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
 
-            <!-- Updated: Change rounded-full to rounded-xl -->
-            <a href="#contact" class="mt-12 inline-flex items-center px-10 py-4 text-lg font-bold bg-nu-purple-600 rounded-xl shadow-lg shadow-nu-purple-500/40 hover:bg-nu-purple-500 transition duration-300 transform hover:scale-[1.05]">
-                Start a Conversation <i class="fas fa-arrow-right ml-3"></i>
-            </a>
+        <div class="max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <!-- Hero Image - Mobile: First (top), Desktop: Second (right) -->
+            <div class="flex justify-center md:order-2">
+                <div class="relative">
+                    <div class="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-nu-purple-500/50 shadow-lg shadow-nu-purple-600/30">
+                        <img src="img/hero.gif" alt="Tech animation - Software Development" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Glow effect behind image -->
+                    <div class="absolute inset-0 -z-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full bg-nu-purple-600/20 blur-xl"></div>
+                </div>
+            </div>
+
+            <!-- Text Content - Mobile: Second (bottom), Desktop: First (left) -->
+            <div class="text-center md:text-left md:order-1">
+                <!-- NEW: 10+ Years Experience Text -->
+                <p class="text-lg md:text-xl font-semibold text-gray-500 mb-2 tracking-wide uppercase">
+                    10+ Years Experience
+                </p>
+                <!-- Original Text -->
+                <p class="text-xl md:text-2xl font-bold text-nu-purple-400 mb-4 tracking-widest uppercase opacity-75">
+                    Full Stack & Cloud Engineering
+                </p>
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-50 mb-8 hero-title">
+                    Nywton Barros
+                </h1>
+                
+                <!-- The One Sentence Impact -->
+                <h2 class="text-2xl md:text-3xl lg:text-4xl font-light text-gray-300 max-w-4xl leading-relaxed">
+                    "Crafting elegant software experiences that <span class="font-semibold text-nu-purple-300">make life easier.</span>"
+                </h2>
+
+                <!-- Updated: Change rounded-full to rounded-xl -->
+                <div class="mt-12 flex justify-center md:justify-start">
+                    <a href="#contact" class="inline-flex items-center px-10 py-4 text-lg font-bold bg-nu-purple-600 rounded-xl shadow-lg shadow-nu-purple-500/40 hover:bg-nu-purple-500 transition duration-300 transform hover:scale-[1.05]">
+                        Start a Conversation <i class="fas fa-arrow-right ml-3"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
