@@ -233,7 +233,7 @@
             <h2 class="text-4xl font-bold text-center mb-16 text-white">Selected <span class="text-nu-purple-400">Projects</span></h2>
 
             <!-- Project Card 1: Project Vetias (Text Left, Image Right) -->
-            <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 mb-16 items-center transition duration-300 hover:shadow-sky-500/30">
+            <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 mb-16 items-center transition duration-300 hover:shadow-sky-500/30 cursor-pointer project-card-trigger" data-project-id="vetias">
                 <!-- Content -->
                 <div>
                     <span class="text-sm font-semibold text-nu-purple-400 uppercase tracking-widest">HealthTech & Telemedicine</span>
@@ -253,7 +253,7 @@
             </div>
 
             <!-- Project Card 2: Doe+ (Image Left, Text Right) -->
-            <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center transition duration-300 hover:shadow-nu-purple-500/30">
+            <div class="glass-card grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 lg:p-12 items-center transition duration-300 hover:shadow-nu-purple-500/30 cursor-pointer project-card-trigger" data-project-id="doeplus">
                  <!-- Image - Now a clickable trigger for the gallery -->
                 <div class="rounded-lg overflow-hidden border border-gray-700 h-64 lg:h-80 lg:order-last cursor-pointer project-image-trigger" data-project-id="doeplus">
                     <img src="https://github.com/nywton/resume/blob/master/img/doe.jpg?raw=true" alt="Doe+ Mobile App Screenshot" class="w-full h-full object-cover transition duration-300 hover:scale-[1.05]">
@@ -1018,24 +1018,30 @@
             projectLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
+                    e.stopPropagation();
                     const projectId = e.currentTarget.getAttribute('data-project-id');
                     openModal(projectId);
                 });
             });
 
-            // 2. Project Main Image Triggers
+            // 2. Project Main Image Triggers — now open the detail modal
             projectImageTriggers.forEach(trigger => {
                 trigger.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     const projectId = e.currentTarget.getAttribute('data-project-id');
-                    const project = projectsData[projectId];
-                    if (project && project.gallery.length > 0) {
-                        // Open the gallery starting at index 0
-                        openImageViewer(project.gallery, 0);
-                    }
+                    openModal(projectId);
                 });
             });
 
-            // 3. Close Modal/Viewer Buttons
+            // 3. Entire project card triggers
+            document.querySelectorAll('.project-card-trigger').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const projectId = card.getAttribute('data-project-id');
+                    openModal(projectId);
+                });
+            });
+
+            // 4. Close Modal/Viewer Buttons
             closeModalBtn.addEventListener('click', closeModal);
             closeViewerBtn.addEventListener('click', closeImageViewer);
 
